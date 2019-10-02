@@ -53,5 +53,6 @@ public class VectorMethods {
 		System.out.println(Math.toDegrees(vm.angle(4, 3, 2, 1, 5, 4)));
 		//find angle between vectors (4,3,2) and (0,0,0)
 		System.out.println(Math.toDegrees(vm.angle(4, 3, 2, 0, 0, 0)));
+		//cannot find the angle between 2 vectors when one of them has zero magnitude
 			}
 		}
