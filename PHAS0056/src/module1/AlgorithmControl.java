@@ -27,19 +27,33 @@ public class AlgorithmControl {
 		}
 	}
 	
-	public static void timer() {
+	//create a method to create a timer that will last for 5 seconds
+	public static int timer(long maxTime, int loopSteps) {
+		//set time at start of loop
 		long timeNow = System.currentTimeMillis();
-		int n=1;
-		long iremainder=timeNow % n;
-		
-		while (timeNow<5001) {
-			
-			n=n+1;
-		}
+		long timeA=timeNow;
+		long timeB=timeNow;
 		
 		
 		
+		//int totalLoops = timer(long maxTime, int loopSteps);
+		
+		//initialise an integer to represent the total number of completed loops
+		int n=0;
 	
+		
+		while (timeB-timeA<maxTime) {
+			//reset time for each loop
+			timeB=System.currentTimeMillis();
+			//add one completed loop
+			n=n+1;
+			//set up if statement to print the number of iterations of the loop every 100 loops
+			if (n % loopSteps ==0){
+				System.out.println(n);	
+			}
+		}
+	return n;
+	System.out.println("The total number of loops for this timer was", n );
 	}
 	
 		
@@ -57,11 +71,12 @@ public class AlgorithmControl {
 		ac.loop();
 		ac.decrement();
 		ac.increment();
-		System.out.println(System.currentTimeMillis());
-		long timeNow = System.currentTimeMillis();
-		int n = 500;
-		long iremainder=timeNow % n;
-		System.out.println(iremainder);
+		//System.out.println(System.currentTimeMillis());
+		//long timeNow = System.currentTimeMillis();
+		//int n = 500;
+		//long iremainder=timeNow % n;
+		//System.out.println(iremainder);
+		ac.timer(10000,1000);
 	}
 
 }
