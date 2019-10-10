@@ -61,7 +61,21 @@ public class ThreeVector {
 		//test7
 	}
 	
+	public double angleNS(ThreeVector a) {
+		return angle(a,this);
+	}
+
 	
+//	public static SimpleCounter add(SimpleCounter x,
+	//		SimpleCounter y) {
+		//	int sum = x.counter + y.counter;
+			//return new SimpleCounter(sum);
+//			} 
+	
+//	public SimpleCounter add(SimpleCounter x) {
+//		int sum = x.counter + this.counter;
+//		return new SimpleCounter(sum);
+//		} 
 		
 	
 	
@@ -82,6 +96,8 @@ public class ThreeVector {
 		System.out.println(myThreeVec);
 		System.out.println(myThreeVec.unitVector());
 		System.out.println(angle(myThreeVec,myThreeVec2));
+		System.out.println(myThreeVec.angleNS(myThreeVec2));
+		
 	}
 
 }
