@@ -58,7 +58,7 @@ public class ThreeVector {
 	//static method to find the angle between two vectors
 	public static double angle(ThreeVector a, ThreeVector b) {
 		return (scalarProduct(a,b)/(a.magnitude()*b.magnitude()));
-		//test 3
+		//test5
 	}
 	
 	
