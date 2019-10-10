@@ -50,12 +50,20 @@ public class ThreeVector {
 		return new ThreeVector ((a.y*b.z)-(a.z*b.y),(a.z*b.x)-(a.x*b.z),(a.x*b.y)-(a.y*b.x));
 	}
 	
-	//static method to find the vecto when two vectors are added 
+	//static method to find the resultant vector when two vectors are added 
 	public static ThreeVector add(ThreeVector a, ThreeVector b) {
 		return new ThreeVector ((a.x+b.x),(a.y+b.y),(a.z+b.z));
 	}
 	
-	public static double angle()
+	//static method to find the angle between two vectors
+	public static double angle(ThreeVector a, ThreeVector b) {
+		return (scalarProduct(a,b)/(a.magnitude()*b.magnitude()));
+		
+	}
+	
+	public double scalarProductNS() {
+		
+	}
 	
 	
 	
@@ -68,10 +76,12 @@ public class ThreeVector {
 
 	public static void main(String[] args) {
 		
-		ThreeVector myThreeVec = new ThreeVector(4,5,6);
+		ThreeVector myThreeVec = new ThreeVector(1,2,3);
+		ThreeVector myThreeVec2 = new ThreeVector(4,5,6);
 		System.out.println(myThreeVec.magnitude());
 		System.out.println(myThreeVec);
 		System.out.println(myThreeVec.unitVector());
+		System.out.println(angle(myThreeVec,myThreeVec2));
 	}
 
 }

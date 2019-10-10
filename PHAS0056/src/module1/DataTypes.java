@@ -21,7 +21,7 @@ public class DataTypes {
 		System.out.println("longVar= "+ longVar);
 		
 		//Assign a byte variable with value 5
-		byte byteVar=5;
+		byte byteVar=15;
 		System.out.println("byteVar= "+ byteVar);
 		
 		//multiply each of our defined variables by themselves and print them

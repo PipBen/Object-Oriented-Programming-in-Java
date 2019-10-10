@@ -26,9 +26,9 @@ public class VectorMethods {
 	//define a method to find the angle between two 3-dimensional vectors
 	public double angle (double x, double y, double z, double x1, double y1, double z1) {
 		
-		VectorMethods vm = new VectorMethods();
+		//VectorMethods vm = new VectorMethods();
 		double ang;
-		ang= Math.acos(vm.dotProduct(x,y,z,x1,y1,z1)/(vm.magnitude(x,y,z)*vm.magnitude(x1,y1,z1)));
+		ang= Math.acos(dotProduct(x,y,z,x1,y1,z1)/(magnitude(x,y,z)*magnitude(x1,y1,z1)));
 		return ang;
 	}
 	
