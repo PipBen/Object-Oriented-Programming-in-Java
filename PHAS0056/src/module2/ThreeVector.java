@@ -61,9 +61,9 @@ public class ThreeVector {
 		
 	}
 	
-	public double scalarProductNS(test2) {
+	
 		
-	}
+	
 	
 	
 	
