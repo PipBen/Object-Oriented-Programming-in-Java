@@ -65,6 +65,17 @@ public class ThreeVector {
 		return angle(a,this);
 	}
 	
+	public double scalarProductNS(ThreeVector a) {
+		return scalarProduct(a,this);
+	}
+	
+	public ThreeVector vectorProductNS(ThreeVector a) {
+		return vectorProduct(a,this);
+	}
+	
+	public ThreeVector addNS(ThreeVector a) {
+		return add(a,this);
+	}
 	//another test
 
 	
