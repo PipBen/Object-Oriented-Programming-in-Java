@@ -29,9 +29,7 @@ public class ThreeVector {
 	
 	//method to convert our given vector into a string
 	public String toString() {
-		//
-		//String str1 = (String) myThreeVec;
-		//return myThreeVec;
+		
 		String xs = Double.toString(x);
 		String ys = Double.toString(y);
 		String zs = Double.toString(z);
@@ -61,56 +59,36 @@ public class ThreeVector {
 		//test7
 	}
 	
+	//non static method to find the angle between two vectors, calls the calculations from the static version of the method
 	public double angleNS(ThreeVector a) {
 		return angle(a,this);
 	}
 	
+	//non static method to find the scalar product of 2 three dimensional vectors
 	public double scalarProductNS(ThreeVector a) {
 		return scalarProduct(a,this);
 	}
 	
+	//non static method to find the vector product of 2 three dimensional vectors
 	public ThreeVector vectorProductNS(ThreeVector a) {
 		return vectorProduct(a,this);
 	}
 	
+	//non static method to find the resultant vector when two vectors are added 
 	public ThreeVector addNS(ThreeVector a) {
 		return add(a,this);
 	}
-	//another test
-
 	
-//	public static SimpleCounter add(SimpleCounter x,
-	//		SimpleCounter y) {
-		//	int sum = x.counter + y.counter;
-			//return new SimpleCounter(sum);
-//			} 
-	
-//	public SimpleCounter add(SimpleCounter x) {
-//		int sum = x.counter + this.counter;
-//		return new SimpleCounter(sum);
-//		} 
+	//public static void main(String[] args) {
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	public static void main(String[] args) {
+//		ThreeVector myThreeVec = new ThreeVector(1,2,3);
+//		ThreeVector myThreeVec2 = new ThreeVector(4,5,6);
+//		System.out.println(myThreeVec.magnitude());
+//		System.out.println(myThreeVec);
+//		System.out.println(myThreeVec.unitVector());
+//		System.out.println(angle(myThreeVec,myThreeVec2));
+//		System.out.println(myThreeVec.angleNS(myThreeVec2));
 		
-		ThreeVector myThreeVec = new ThreeVector(1,2,3);
-		ThreeVector myThreeVec2 = new ThreeVector(4,5,6);
-		System.out.println(myThreeVec.magnitude());
-		System.out.println(myThreeVec);
-		System.out.println(myThreeVec.unitVector());
-		System.out.println(angle(myThreeVec,myThreeVec2));
-		System.out.println(myThreeVec.angleNS(myThreeVec2));
-		
-	}
+//	}
 
 }
