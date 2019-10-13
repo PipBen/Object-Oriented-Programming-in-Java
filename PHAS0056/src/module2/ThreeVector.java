@@ -78,17 +78,5 @@ public class ThreeVector {
 	public ThreeVector addNS(ThreeVector a) {
 		return add(a,this);
 	}
-	
-	//public static void main(String[] args) {
-		
-//		ThreeVector myThreeVec = new ThreeVector(1,2,3);
-//		ThreeVector myThreeVec2 = new ThreeVector(4,5,6);
-//		System.out.println(myThreeVec.magnitude());
-//		System.out.println(myThreeVec);
-//		System.out.println(myThreeVec.unitVector());
-//		System.out.println(angle(myThreeVec,myThreeVec2));
-//		System.out.println(myThreeVec.angleNS(myThreeVec2));
-		
-//	}
 
 }

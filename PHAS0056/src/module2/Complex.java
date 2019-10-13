@@ -1,6 +1,7 @@
 package module2;
 
 public class Complex {
+	static double pi=Math.PI;
 	
 	double a;
 	double b;
@@ -70,31 +71,29 @@ public class Complex {
 		String as = Double.toString(a);
 		String bs = Double.toString(b);
 		if (b>=0) {
-			String comp1 = as+"+"+bs+"i";
+			String comp1 = "("+as+"+"+bs+"i)";
 			return comp1;
 			}
 		else {
-			String comp2= as+bs+"i";
+			String comp2= "("+as+bs+"i)";
 			return comp2;
 		}
 		
 	}
 	
+	//method to determine the real and imaginary parts of a complex number given its magnitude and argument 
 	public static Complex setFromModulusAngle(double mag, double ang) {
 		
-		double pi=Math.PI;
-		
-		
+		//use if, else if and else statements to calculate the real and imaginary values depending on which quadrant
+		//the argument lies in on an argand diagram
+		//first quadrant
 		if(ang>=0 & ang<=pi/2) {
 			double theta=ang;
-			
 			double a_real=Math.sqrt((mag*mag)/((Math.tan(theta)*(Math.tan(theta)))+1));
 			double b_imag=a_real*Math.tan(theta);
-			
-			Complex result= new Complex(a_real,b_imag);
-			return result;
+			return new Complex(a_real,b_imag);
 			}
-		
+		//second quadrant
 		else if(ang>pi/2 & ang<=pi) {
 			double theta=pi-ang;
 			double a_real=Math.sqrt((mag*mag)/((Math.tan(theta)*(Math.tan(theta)))+1));
@@ -102,7 +101,7 @@ public class Complex {
 			
 			return new Complex(-a_real,b_imag);
 		}
-		
+		//third quadrant
 		else if(ang>pi & ang<=(3*pi/2)) {
 			double theta = ang-pi;
 			double a_real=Math.sqrt((mag*mag)/((Math.tan(theta)*(Math.tan(theta)))+1));
@@ -110,29 +109,65 @@ public class Complex {
 			
 			return new Complex(-a_real,-b_imag);
 		}
-		
+		//fourth quadrant
 		else {
 			double theta=2*pi-ang;
 			double a_real=Math.sqrt((mag*mag)/((Math.tan(theta)*(Math.tan(theta)))+1));
 			double b_imag=a_real*Math.tan(theta);
 			
 			return new Complex(a_real,-b_imag);
-			
-		}
-		
+			}
 	}
+	
+	//static method to add two complex numbers
+	public static Complex add(Complex x, Complex y) {
+		double a_add=x.a+y.a;
+		double b_add=x.b+y.b;
+		return new Complex(a_add,b_add);
+	}
+	
+	//static method to subtract two complex numbers
+	public static Complex subtract(Complex x, Complex y) {
+		double a_sub=x.a-y.a;
+		double b_sub=x.b-y.b;
+		return new Complex(a_sub,b_sub);
+	}
+	
+	//static method to multiply two complex numbers
+	public static Complex multiply(Complex x, Complex y) {
+		double real= x.a*y.a-x.b*y.b;
+		double imag= x.a*y.b+y.a*x.b;
+		return new Complex (real,imag);
+	}
+	
+	//static method to divide two complex numbers
+	public static Complex divide(Complex x, Complex y) {
+		double real= (x.a*y.a+x.b*y.b)/(y.a*y.a+y.b*y.b);
+		double imag= ((x.b*y.a)-(x.a*y.b))/(y.a*y.a+y.b*y.b);
+		return new Complex (real,imag);
+	}
+	
+	//define complex number objects for 1, 0 and i
+	static Complex ONE =new Complex(1,0);
+	static Complex ZERO = new Complex (0,0);
+	static Complex I= new Complex (0,1);
+		
+	
 		
 
 
 	public static void main(String[] args) {
-		Complex number = new Complex(5,-4);
-		Complex number2= new Complex(2,2);
+		double pi =Math.PI;
+		System.out.println(3*pi/2);
+		Complex number = new Complex(5,6);
+		Complex number2= new Complex(2,-3);
 		System.out.println(number.real());
 		System.out.println(number.modulus());
 		System.out.println(number.angle());
 		System.out.println(number);
 		System.out.println(number.equals(number));
-		System.out.println(setFromModulusAngle(6,2*(Math.PI/5)));
+		System.out.println(setFromModulusAngle(6,7*(Math.PI/5)));
+		System.out.println(Complex.divide(number,number2));
 	}
 	
 	
