@@ -39,7 +39,7 @@ public class ThreeTestVector {
 				+ "\nto print our vector, the package name, class name and a hash code are output, since there is no 'toString' method"
 				+ "\nto clarify how we want this type of object to be displayed.");
 		
-		
+
 		
 	}
 
