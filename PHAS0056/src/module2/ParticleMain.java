@@ -6,7 +6,7 @@ public class ParticleMain {
 		//create a new instance of the FallingParticle object
 		FallingParticle FP=new FallingParticle(4.3,2.4);
 		
-		//reset height and initial veclocity each time
+		//reset height and initial velocity each time
 		FP.SetH(5);
 		FP.SetV(0);
 		FP.drop(0.5);
