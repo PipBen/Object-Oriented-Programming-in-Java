@@ -151,24 +151,6 @@ public class Complex {
 	static Complex ONE =new Complex(1,0);
 	static Complex ZERO = new Complex (0,0);
 	static Complex I= new Complex (0,1);
-		
-	
-		
-
-
-	public static void main(String[] args) {
-		double pi =Math.PI;
-		System.out.println(3*pi/2);
-		Complex number = new Complex(5,6);
-		Complex number2= new Complex(2,-3);
-		System.out.println(number.real());
-		System.out.println(number.modulus());
-		System.out.println(number.angle());
-		System.out.println(number);
-		System.out.println(number.equals(number));
-		System.out.println(setFromModulusAngle(6,7*(Math.PI/5)));
-		System.out.println(Complex.divide(number,number2));
-	}
 	
 	
 
