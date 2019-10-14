@@ -22,6 +22,7 @@ public class TestExceptions {
 		System.out.println(e);
 	}
 	
+	
 	ThreeVector v1= new ThreeVector (1,2,3);
 	ThreeVector v2= new ThreeVector (0,0,0);
 	//unit vector
@@ -40,6 +41,16 @@ public class TestExceptions {
 		System.out.println(e);
 	}
 	
-		
+	
+	
+	try {
+		FallingParticle FP= new FallingParticle(-4,5);
+		System.out.println("The unit vector of v1"+FP);
+	}
+	catch(Exception e1) {
+		System.out.println(e1);
+	}
+	
+	
 	}
 }

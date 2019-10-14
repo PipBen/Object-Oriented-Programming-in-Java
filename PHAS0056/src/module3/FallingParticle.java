@@ -13,6 +13,9 @@ public class FallingParticle {
 	
 	//constructor for the FallingParticle object
 	public FallingParticle (double m, double d) throws Exception {
+		if (m<0 && d<0) {
+			throw new Exception("negative mass and negative drag are unphysical");
+		}
 		if(m<0) {
 			throw new Exception("negative mass is unphysical");
 		}
@@ -29,7 +32,10 @@ public class FallingParticle {
 		}
 	
 	//method to find the updated vertical position  of the particle at a later time t
-	public double GetZ() {
+	public double GetZ()throws Exception {
+		if(z<0) {
+			throw new Exception("negative height is unphysical");
+		}
 		return z;
 	}
 	
@@ -44,7 +50,10 @@ public class FallingParticle {
 	}
 	
 	//method to return the time since the particle was released
-	public double GetT() {
+	public double GetT()throws Exception {
+		if(t<0) {
+			throw new Exception("negative time is unphysical");
+		}
 		return t ;
 				
 	}
@@ -62,7 +71,10 @@ public class FallingParticle {
 		}
 	}
 	//method to simulate the falling particle in steps of deltaT
-	public void drop(double deltaT) {
+	public void drop(double deltaT) throws Exception {
+		if(deltaT<0) {
+			throw new Exception("negative timestep is unphysical");
+		} 
 		z=h;
 		while(z>0) {
 			doTimeStep(deltaT);

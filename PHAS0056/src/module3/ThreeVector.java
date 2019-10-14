@@ -60,7 +60,7 @@ public class ThreeVector {
 		if(a.magnitude()==0 || b.magnitude()==0 ) {
 			throw new Exception("Cannot find the angle between two vectors if one is of zero magnitude");
 		}
-		return (scalarProduct(a,b)/(a.magnitude()*b.magnitude()));
+		return Math.acos((scalarProduct(a,b)/(a.magnitude()*b.magnitude())));
 		//test7
 	}
 	

@@ -60,7 +60,7 @@ public class ThreeVector {
 	}
 	
 	//non static method to find the angle between two vectors, calls the calculations from the static version of the method
-	public double angleNS(ThreeVector a) {
+	public double angle(ThreeVector a) {
 		return angle(a,this);
 	}
 	

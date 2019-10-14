@@ -31,8 +31,8 @@ public class ThreeTestVector {
 		System.out.println("The angle between v1 and v3 is "+ThreeVector.angle(v1, v3)+" since v3 is of zero magnitude");
 		
 		System.out.println("\nThe below uses non-static methods to calculate the angle between the above defined vectors");
-		System.out.println("The angle between v1 and v2 is " +v2.angleNS(v1)+" radians");
-		System.out.println("The angle between v1 and v2 is "+v3.angleNS(v1)+" since v3 is of zero magnitude");
+		System.out.println("The angle between v1 and v2 is " +v2.angle(v1)+" radians");
+		System.out.println("The angle between v1 and v2 is "+v3.angle(v1)+" since v3 is of zero magnitude");
 		
 		System.out.println("\nWhen we attempt to print one of our vectors using 'System.out.println(v1),' without having a"
 				+ "\n'toString' method defined, the console returns 'module2.ThreeVector@4517d9a3.' This suggests that in attempting"

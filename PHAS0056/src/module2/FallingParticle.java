@@ -5,7 +5,7 @@ public class FallingParticle {
 	//introduce our variables
 	double m;	//mass, kg
 	double d;	//drag coefficient, kg/m
-	static double t=0;	//time elapsed since particle was dropped, s, always starts at zero so static
+	double t=0;	//time elapsed since particle was dropped, s, always starts at zero so static
 	double z;	//vertical position of the particle, measured upwards from the base of the vessel, m
 	double h;	//initial starting height of the particle, measured upwards from the base of the vessel, m
 	double v;	//velocity of the particle, measured upwards, m/s
@@ -46,18 +46,19 @@ public class FallingParticle {
 	//method to calculate the acceleration of the particle in its current state, and update its velocity and position
 	public void doTimeStep(double deltaT) {
 		double a = ((d*v*v)/m) - g;
-		if(a>0.01 || a<-0.01) {
+		//if(a>0.01 || a<-0.01) {
 			v= v+a*deltaT;
-			z= z+a*deltaT;
-		}
+			z= z+v*deltaT;
+		
 		//in the case a=0 (terminal velocity)
-		else {
-			z=z+v*deltaT;
-		}
+		//else {
+			//z=z+v*deltaT;
+		
 	}
 	//method to simulate the falling particle in steps of deltaT
 	public void drop(double deltaT) {
 		z=h;
+		t=0;
 		while(z>0) {
 			doTimeStep(deltaT);
 			t=t+deltaT;
