@@ -27,9 +27,15 @@ public class FallingParticle {
 	}
 	
 	//method to set the initial value of height
-	public void SetH(double h_val) {
+	public void SetH(double h_val)throws Exception {
 		h=h_val;
+		if(h<0) {
+			throw new Exception("negative height is unphysical");
 		}
+	}
+		 
+		
+		
 	
 	//method to find the updated vertical position  of the particle at a later time t
 	public double GetZ()throws Exception {
@@ -59,7 +65,10 @@ public class FallingParticle {
 	}
 	
 	//method to calculate the acceleration of the particle in its current state, and update its velocity and position
-	public void doTimeStep(double deltaT) {
+	public void doTimeStep(double deltaT)throws Exception {
+		if(deltaT<0) {
+			throw new Exception("Cannot have negative time step");
+		}
 		double a = ((d*v*v)/m) - g;
 		if(a>0.01 || a<-0.01) {
 			v= v+a*deltaT;

@@ -27,7 +27,7 @@ public class TestExceptions {
 	ThreeVector v2= new ThreeVector (0,0,0);
 	//unit vector
 	try {
-		System.out.println("The unit vector of v1"+v1.unitVector());
+		System.out.println("The unit vector of v2"+v2.unitVector());
 	}
 	catch(Exception e) {
 		System.out.println(e);
@@ -42,13 +42,43 @@ public class TestExceptions {
 	}
 	
 	
+	//Falling particle mass/drag
 	
 	try {
 		FallingParticle FP= new FallingParticle(-4,5);
+		FP.SetH(-5);
 		System.out.println("The unit vector of v1"+FP);
 	}
 	catch(Exception e1) {
 		System.out.println(e1);
+	}
+	
+	//set negative height
+	try {
+		FallingParticle FP= new FallingParticle(4,5);
+		FP.SetH(-5);
+	}
+	catch(Exception e) {
+		System.out.println(e);
+	}
+	
+	//set negative time
+	try {
+		FallingParticle FP= new FallingParticle(4,5);
+		FP.t=-5;
+		FP.GetT();
+	}
+	catch(Exception e) {
+		System.out.println(e);
+	}
+	
+	//negative timestep
+	try {
+		FallingParticle FP= new FallingParticle(4,5);
+		FP.doTimeStep(-0.5);
+	}
+	catch(Exception e) {
+		System.out.println(e);
 	}
 	
 	
