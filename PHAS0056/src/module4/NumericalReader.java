@@ -14,8 +14,30 @@ public class NumericalReader {
 		String s =br.readLine();
 		System.out.println("You typed: "+s);
 		return s;
-
+		}
+	
+	public static BufferedReader brFromURL(String urlName) throws IOException {
+		URL u = new URL(urlName);
+		InputStream is = u.openStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		return br;
+		}
+	
+	private void analysisStart(String dataFile) throws IOException{
+		FileWriter fw = new FileWriter(dataFile);
+		double minValue;
+		double maxValue;
+		double nValues;
+		double sumOfValues;
+		
 	}
+	
+	public void analyseData(String line) throws IOException{
+		
+	}
+	
+	
 
 	
 	
