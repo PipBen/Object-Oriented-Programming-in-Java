@@ -7,11 +7,13 @@ public class WordCounter {
 	//URL u = new URL(urlName);
 	//InputStrem is = u.openStream;
 	public static BufferedReader brFromURL(String urlName) throws IOException {
+		
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		return br;
+		
 		
 		}
 	
