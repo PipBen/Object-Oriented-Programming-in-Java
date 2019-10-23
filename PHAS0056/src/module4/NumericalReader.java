@@ -21,15 +21,13 @@ public class NumericalReader {
 	public  String saveFile;
 	public  String dataFile;
 	public static String userHome = System.getProperty("user.home");
-	//double next_double;
+
 	
 	//returns user keyboard input
 	public static String getStringFromKeyboard() throws Exception, IOException{
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
 		System.out.println("What directory should the file be stored in?");
-		
-		
 		String s =br.readLine();
 		System.out.println("You typed: "+s);
 		//return default home directory if no user input
@@ -76,7 +74,7 @@ public class NumericalReader {
 			}
 			//analyse the data if not
 			else {
-				
+				//print data to the console and to the file
 				double next_double=s.nextDouble();
 				System.out.println(next_double);
 				pw.println(next_double);
@@ -107,7 +105,7 @@ public class NumericalReader {
 		pw.close();
 	}
 	
-	
+	//main method
 	public static void main(String[] args) {
 		
 		//user to specify directory
@@ -123,6 +121,7 @@ public class NumericalReader {
 		
 		//new instance of NumericalReader class
 		NumericalReader nr = new NumericalReader();
+		System.out.println("\nData from numbers1.txt");
 		nr.saveFile = (saveDir + File.separator + "numbers1.txt");
 		
 		//return BufferedReader object from our URL
@@ -156,6 +155,7 @@ public class NumericalReader {
 		
 		//new instance of NumericalReader class
 		NumericalReader nr2 = new NumericalReader();
+		System.out.println("\nData from numbers2.txt");
 		nr2.saveFile = (saveDir + File.separator + "numbers2.txt");
 		
 		//return BufferedReader object from our URL
@@ -177,7 +177,7 @@ public class NumericalReader {
 		//analyse our data
 		try {
 		while ((nr2.line = nr2.reader.readLine()) != null) {
-		    nr2.analyseData(nr2.line); // analyze lines, check for comments etc.
+		    nr2.analyseData(nr2.line); // analyse lines, check for comments etc.
 			}
 		}
 		catch (IOException e) {
