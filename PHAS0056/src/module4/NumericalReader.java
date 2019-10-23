@@ -9,7 +9,10 @@ public class NumericalReader {
 	private double maxValue;
 	private int nValues;
 	private double sumOfValues;
-	private String mainfile;
+	//private String mainfile;
+	private FileWriter fw;
+	private BufferedWriter bw;
+	private PrintWriter pw;
 	//double next_double;
 	
 	//returns user keyboard input
@@ -35,15 +38,17 @@ public class NumericalReader {
 	
 	//creates a file called dataFile and initializes variables
 	public void analysisStart(String dataFile) throws IOException{
-		FileWriter fw = new FileWriter(dataFile);
+		fw = new FileWriter(dataFile);
+		bw = new BufferedWriter(fw);
+		pw = new PrintWriter(bw);
 		//BufferedWriter bw = new BufferedWriter(fw);
 		//PrintWriter pw = new PrintWriter(bw);
-		fw.close();
+		//fw.close();
 		minValue=10000;
 		maxValue=-1000000;
 		nValues=0;
 		sumOfValues=0;
-		mainfile=dataFile;
+		//mainfile=dataFile;
 		
 	}
 	
@@ -52,12 +57,11 @@ public class NumericalReader {
 		Scanner s= new Scanner(line);
 		
 		
-		FileWriter fw = new FileWriter(mainfile);
-		BufferedWriter bw = new BufferedWriter(fw);
-		PrintWriter pw = new PrintWriter(bw);
+		//FileWriter fw = new FileWriter(mainfile);
+		
 		//double total=0;
 		while (s.hasNextLine() || s.hasNext()){
-			if (line.isEmpty() || ) {
+			if (line.isEmpty() || Character.isLetter(line.charAt(0)) ) {
 				s.nextLine();
 			}
 			else {
@@ -77,13 +81,20 @@ public class NumericalReader {
 				//update number of values and sum of values
 				nValues=nValues+1;
 				sumOfValues=sumOfValues+next_double;
-				
 			}
-			
 		}
-		
-		pw.close();
+		//pw.close();
 		s.close();
+	}
+	
+	//finish our analysis
+	public void analysisEnd() {
+		System.out.println("The minimum value is "+minValue);
+		System.out.println("The maximum value is "+maxValue);
+		System.out.println("The average value is "+sumOfValues/nValues);
+		System.out.println("Total number of values read is "+nValues);
+		pw.close();
+		//fw.close();
 	}
 	
 	
