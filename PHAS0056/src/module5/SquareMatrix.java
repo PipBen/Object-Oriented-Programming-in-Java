@@ -3,6 +3,7 @@ import java.lang.reflect.Array;
 
 public class SquareMatrix {
 	
+	
 	public SquareMatrix(double[][] elements) throws Exception {
 		double[][] matrix = elements;
 		int nRows = matrix.length;
@@ -13,6 +14,7 @@ public class SquareMatrix {
 	}
 	
 	public String toString() {
+		String row1= double.toString
 		
 	}
 
