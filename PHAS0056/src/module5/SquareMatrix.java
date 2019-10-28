@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class SquareMatrix {
 	double[][] elements;
 	double[][] matrix;
-	int nRows=5;
-	int nCols=5 ;
-	int i=0;
-	int j=0;
+	int nRows;
+	int nCols ;
+	//int i=0;
+	//int j=0;
 	
 	public SquareMatrix(double[][] elements) throws Exception  {
 		//double[][] matrix = elements;
@@ -18,19 +18,24 @@ public class SquareMatrix {
 		if(nRows!= nCols) {
 			throw new Exception("input matrix is not square");
 		}
+		this.nRows= nRows;
+		this.nCols=nCols;
+		this.matrix=elements;
 	}
 	
 	public String toString() {
 		StringBuilder matrixString = new StringBuilder();
 		//StringBuilder rowString= new StringBuilder();
-		//int n=0;
-		while(i<= nRows){
-			while(j<=nCols) {
-				matrixString.append(elements[i][j]);
+		int i=0;
+		while(i< nRows){
+			int j=0;
+			while(j<nCols) {
+				matrixString.append("  "+ matrix[i][j]);
 				j++;
 			}
+			matrixString.append("\n");
 			i++;
-		};
+		}
 		
 		return matrixString.toString();
 	//	for (int i = 0; i < matrix.length; i++) {
@@ -53,13 +58,13 @@ public class SquareMatrix {
 			
 			//System.out.println(Arrays.deepToString(A));
 			System.out.println(A);
-			//System.out.println(B);
+			System.out.println(B);
 		}
 		catch(Exception e){
 			System.out.println(e);
 		}
 		
-		System.out.println(A_comp);
+		//System.out.println(A_comp);
 		
 	}
 
