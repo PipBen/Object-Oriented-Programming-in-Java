@@ -1,4 +1,5 @@
 package module5;
+import java.lang.reflect.Array;
 
 
 public class TestSquareMatrix {
@@ -17,6 +18,8 @@ public class TestSquareMatrix {
 			System.out.println(e);
 		}
 		//A= {{2,1,0},{0,1,0},{-1,0,2}};
+		
+		//System.out.println(A)
 
 	}
 
