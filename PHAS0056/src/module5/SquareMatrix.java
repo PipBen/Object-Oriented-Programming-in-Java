@@ -8,9 +8,11 @@ public class SquareMatrix {
 	double[][] matrix;
 	int nRows;
 	int nCols ;
+
 	//int i=0;
 	//int j=0;
 	
+	//constructor for SquareMatrix class
 	public SquareMatrix(double[][] elements) throws Exception  {
 		//double[][] matrix = elements;
 		int nRows = elements.length;
@@ -23,46 +25,171 @@ public class SquareMatrix {
 		this.matrix=elements;
 	}
 	
+	//convert SquareMatrix object to a readable string
 	public String toString() {
 		StringBuilder matrixString = new StringBuilder();
 		//StringBuilder rowString= new StringBuilder();
 		int i=0;
 		while(i< nRows){
+			matrixString.append("{");
 			int j=0;
 			while(j<nCols) {
-				matrixString.append("  "+ matrix[i][j]);
+				matrixString.append(matrix[i][j]+"  ");
 				j++;
 			}
-			matrixString.append("\n");
+			matrixString.append("}\n");
 			i++;
 		}
-		
 		return matrixString.toString();
-	//	for (int i = 0; i < matrix.length; i++) {
-     //      matrixString.append(matrix[i]);
-     // }
-		//return  Arrays.deepToString(elements[i][j]);
-		
 	}
+	
+	//return a unit matrix SquareMatrix object
+	public static SquareMatrix unitMatrix(int size) throws Exception{
+		double[][] unit =new double[size][size];
+		for(int i = 0; i < size; i++) unit[i][i] = 1;
+	    SquareMatrix unitmatrix=new SquareMatrix(unit);
+		return unitmatrix;
+	}
+	
+	
+	//java generated method to compare the equality of two SquareMatrix objects
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.deepHashCode(elements);
+		result = prime * result + Arrays.deepHashCode(matrix);
+		result = prime * result + nCols;
+		result = prime * result + nRows;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SquareMatrix other = (SquareMatrix) obj;
+		if (!Arrays.deepEquals(elements, other.elements))
+			return false;
+		if (!Arrays.deepEquals(matrix, other.matrix))
+			return false;
+		if (nCols != other.nCols)
+			return false;
+		if (nRows != other.nRows)
+			return false;
+		return true;
+	}
+	
+	//method to add two SquareMatrix objects
+	public static SquareMatrix add(SquareMatrix sm1, SquareMatrix sm2) throws Exception {
+		int size= sm1.nRows;
+		int size2=sm2.nRows;
+		if(size!=size2) {
+			throw new Exception("Cannot add square matrices of different sizes");
+		}
+		double[][] add=new double[size][size];
+		int i=0;
+		while(i< sm1.nRows){
+			add[i][0]=sm1.matrix[i][0]+sm2.matrix[i][0];
+			int j=0;
+			while(j<sm1.nCols) {
+				add[i][j]=sm1.matrix[i][j]+sm2.matrix[i][j];
+				j++;
+			}
+			i++;
+		}
+		SquareMatrix sm3= new SquareMatrix (add);
+		return sm3;
+	}
+	
+	//method to subtract two SquareMatrix object
+	public static SquareMatrix subtract(SquareMatrix sm1, SquareMatrix sm2) throws Exception {
+		int size= sm1.nRows;
+		int size2=sm2.nRows;
+		if(size!=size2) {
+			throw new Exception("Cannot subtract square matrices of different sizes");
+		}
+		double[][] subtract=new double[size][size];
+		int i=0;
+		while(i< sm1.nRows){
+			subtract[i][0]=sm1.matrix[i][0]-sm2.matrix[i][0];
+			int j=0;
+			while(j<sm1.nCols) {
+				subtract[i][j]=sm1.matrix[i][j]-sm2.matrix[i][j];
+				j++;
+			}
+			i++;
+		}
+		SquareMatrix sm3= new SquareMatrix (subtract);
+		return sm3;
+	}
+	
+	//method to multiply two SquareMatrix object
+	public static SquareMatrix multiply(SquareMatrix sm1, SquareMatrix sm2) throws Exception {
+		int size= sm1.nRows;
+		int size2=sm2.nRows;
+		if(size!=size2) {
+			throw new Exception("Cannot multiply square matrices of different sizes");
+		}
+		double[][] multiply=new double[size][size];
+		int i=0;
+		int j=0;
+		int k=0;
+		for(i=0;i<size;i++){
+	        for(j=0;j<size;j++) {
+	        	for (k=0; k < size; k++) {
+	        		multiply[i][j]+=sm1.matrix[i][k]*sm2.matrix[k][j];
+	        	}
+			}
+		}
+		SquareMatrix sm3= new SquareMatrix (multiply);
+		return sm3;
+	}
+	
+	//non-static methods to call the static methods defined above
+	public SquareMatrix add(SquareMatrix sm2) throws Exception {
+		return add(this,sm2);
+	}
+
+	public SquareMatrix subtract(SquareMatrix sm2) throws Exception {
+		return subtract(this,sm2);
+	}
+	
+	public SquareMatrix multiply(SquareMatrix sm2) throws Exception {
+		return multiply(this,sm2);
+	}
+	
 	
 	public static void main(String[] args) {
 		double[][] A_comp= {{2,1,0},{0,1,0},{-1,0,2}};
 		double[][] B_comp= {{1,3,1},{0,2,0},{1,0,-1}};
-		//SquareMatrix A = new SquareMatrix(A_comp);
-		//SquareMatrix B = new SquareMatrix(B_comp);
-		//System.out.println(A);
+		
 		try {
 			
 			SquareMatrix A = new SquareMatrix(A_comp);
 			SquareMatrix B = new SquareMatrix(B_comp);
-			
+			System.out.println(unitMatrix(5));
 			//System.out.println(Arrays.deepToString(A));
 			System.out.println(A);
 			System.out.println(B);
+			System.out.println(A.equals(A));
+			System.out.println(add(A,B));
+			System.out.println(subtract(A,B));
+			System.out.println(multiply(A,B));
+			System.out.println(A.multiply(B));
+			
 		}
 		catch(Exception e){
 			System.out.println(e);
 		}
+		
+		//A.equals(B);
+		
+		
 		
 		//System.out.println(A_comp);
 		
