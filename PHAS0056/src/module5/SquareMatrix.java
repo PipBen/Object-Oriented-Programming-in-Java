@@ -52,6 +52,8 @@ public class SquareMatrix {
 	}
 	
 	
+	
+	
 	//java generated method to compare the equality of two SquareMatrix objects
 	@Override
 	public int hashCode() {
@@ -164,35 +166,6 @@ public class SquareMatrix {
 	}
 	
 	
-	public static void main(String[] args) {
-		double[][] A_comp= {{2,1,0},{0,1,0},{-1,0,2}};
-		double[][] B_comp= {{1,3,1},{0,2,0},{1,0,-1}};
-		
-		try {
-			
-			SquareMatrix A = new SquareMatrix(A_comp);
-			SquareMatrix B = new SquareMatrix(B_comp);
-			System.out.println(unitMatrix(5));
-			//System.out.println(Arrays.deepToString(A));
-			System.out.println(A);
-			System.out.println(B);
-			System.out.println(A.equals(A));
-			System.out.println(add(A,B));
-			System.out.println(subtract(A,B));
-			System.out.println(multiply(A,B));
-			System.out.println(A.multiply(B));
-			
-		}
-		catch(Exception e){
-			System.out.println(e);
-		}
-		
-		//A.equals(B);
-		
-		
-		
-		//System.out.println(A_comp);
-		
-	}
+	
 
 }
