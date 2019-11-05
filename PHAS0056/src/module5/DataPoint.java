@@ -11,5 +11,19 @@ public class DataPoint {
 		this.ey=ey_val;
 		
 	}
+	
+	public double Getx() {
+		return x;
+	}
+	
+	public double Gety() {
+		return y;
+	}
+	
+	public double Getey() {
+		return ey;
+	}
+	
+
 
 }
