@@ -9,14 +9,13 @@ public class SquareMatrix {
 	int nRows;
 	int nCols ;
 
-	//int i=0;
-	//int j=0;
-	
 	//constructor for SquareMatrix class
 	public SquareMatrix(double[][] elements) throws Exception  {
-		//double[][] matrix = elements;
+		//number of rows in matrix
 		int nRows = elements.length;
+		//number of columns in matrix
 		int nCols = Array.getLength(elements[0]);
+		//throw exception if number of rows and columns is not the same
 		if(nRows!= nCols) {
 			throw new Exception("input matrix is not square");
 		}
@@ -28,7 +27,6 @@ public class SquareMatrix {
 	//convert SquareMatrix object to a readable string
 	public String toString() {
 		StringBuilder matrixString = new StringBuilder();
-		//StringBuilder rowString= new StringBuilder();
 		int i=0;
 		while(i< nRows){
 			matrixString.append("{");

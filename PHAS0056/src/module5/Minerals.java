@@ -10,18 +10,19 @@ import java.util.Scanner;
 
 public class Minerals {
 	
-	//creates first hashmap for code & mass using data from a URL
+	//creates first hashmap for code number & mass using data from a URL
 	public static HashMap<Integer,Double> hashMapFromURL1(String url) throws IOException{
 		
 		URL u = new URL(url);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
-		//define hashmap to add integer code numbers and double mas values to
+		//define hashmap to add integer code numbers and double mass values to
 		HashMap<Integer, Double> hashmap = new HashMap<Integer, Double>();
 		Scanner s= new Scanner(br);
 		//while there is another line
 		while (s.hasNextLine()){
+			//add data to the hashmap
 			hashmap.put(s.nextInt(),s.nextDouble());
 			s.nextLine();
 			}
@@ -29,7 +30,7 @@ public class Minerals {
 		return hashmap;
 		}
 	
-	//method to create first hashmap for code & location using data from a URL
+	//creates second hashmap for code & location using data from a URL
 	public static HashMap<Integer,String> hashMapFromURL2(String url) throws IOException{
 		//create bufferedreader to scan
 		URL u = new URL(url);
@@ -65,16 +66,16 @@ public class Minerals {
 			//create our two hashmaps
 			HashMap<Integer,Double> code_mass= new HashMap<Integer,Double> (hashMapFromURL1("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-samples.txt"));
 			HashMap<Integer,String> code_location= new HashMap<Integer,String> (hashMapFromURL2("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-locations.txt"));
-		
+			//find max and min values
 			System.out.println("The maximum value of mass was "+ Collections.max(code_mass.values()));
 			System.out.println("The minimum value of mass was "+Collections.min(code_mass.values()));
-			
+			//find keys for given max and min values
 			Object maxkey = getKeyFromValue( code_mass,Collections.max(code_mass.values()) );
 			System.out.println("The code number of the maximum mass value was "+maxkey);	
 			
 			Object minkey = getKeyFromValue( code_mass,Collections.min(code_mass.values()) );
 			System.out.println("The code number of the maximum mass value was "+minkey);	
-			
+			//find the location value of the max and min keys
 			String maxloc = code_location.get(maxkey);
 			System.out.println("The location of the maximum mass value was "+ maxloc);
 			
