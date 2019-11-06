@@ -24,6 +24,11 @@ public class DataPoint {
 		return ey;
 	}
 	
+	public String toString() {
+		String point= x+" "+y+" "+ey;
+		return point;
+	}
+	
 
 
 }
