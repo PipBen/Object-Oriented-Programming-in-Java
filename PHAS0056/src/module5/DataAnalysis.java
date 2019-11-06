@@ -32,6 +32,11 @@ public class DataAnalysis {
 		return mypoints;
 		
 		}
+	
+	//Theory theory=new Theory( x,n);
+	public static double goodnessOfFit(Theory theory,ArrayList<DataPoint>) {
+		
+	}
 		
 		
 	
