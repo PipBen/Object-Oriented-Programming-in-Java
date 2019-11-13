@@ -16,11 +16,13 @@ public class MidTermExam {
 		FileReader fr = new FileReader(fileName);
 		BufferedReader br = new BufferedReader(fr);
 		int n=0;
-		
+		//skip first line
 		br.readLine();
 		ArrayList<MPData> mpdata = new ArrayList<MPData>();
 		while (n<652) {
+			//new scanner for each line
 			Scanner s= new Scanner(br.readLine());
+			//comma delimiter for csv
 			s.useDelimiter(","); 
 			
 			String ons=s.next();
@@ -31,7 +33,7 @@ public class MidTermExam {
 			String party=s.next();
 			String pid=s.next(); 
 			String votes=s.next();
-			
+			//new MPData object
 			MPData mp= new MPData(ons, pano, cons, sur, first, party,  pid,  votes);
 			mpdata.add(mp);
 			s.close();
@@ -64,7 +66,6 @@ public class MidTermExam {
 			elecdata.add(ed);
 			s.close();
 			n++;
-			//s.nextLine();	
 			}
 		br.close();
 		return elecdata;
