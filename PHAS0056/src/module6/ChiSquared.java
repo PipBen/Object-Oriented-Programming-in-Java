@@ -1,5 +1,6 @@
 package module6;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -25,6 +26,16 @@ public class ChiSquared implements GoodnessOfFitCalculator{
 		}
 		return chi_sq_sum;
 	}
-
+	
+	public static void main(String[] args) {
+		try{
+			ArrayList<Object> points = new ArrayList<Object> (TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
+			//Theory n1 = new Theory(PowerLawTheory(1)); 
+			//goodnessOfFit(points,n1);
+		}
+		catch(IOException e) {
+			System.out.println("Problem: "+e.getMessage());
+		}
+	}
 }
 

@@ -14,7 +14,7 @@ import module5.DataPoint;
 public class TestDataPoints {
 	
 	//reads the values from the given URL and returns them in the form of an ArrayList
-	public static ArrayList<Object> dataFromURL(String url) throws IOException{
+	public static Collection<Object> dataFromURL(String url) throws IOException{
 		//convert URL to bufferedreader
 		URL u = new URL(url);
 		InputStream is = u.openStream();

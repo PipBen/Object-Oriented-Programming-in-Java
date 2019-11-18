@@ -1,5 +1,7 @@
 package module6;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class DataAnalysis implements GoodnessOfFitCalculator{
@@ -26,7 +28,14 @@ public class DataAnalysis implements GoodnessOfFitCalculator{
 	
 	
 	public static void main(String[] args) {
-		//PowerLawTheory n1= new PowerLawTheory(2);
+		try{
+			Collection<Object> collec = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
+			
+		
+		}
+		catch(IOException e){
+			System.out.println("Problem: "+e.getMessage());
+		}
 		//System.out.println(n1);
 		//QuadraticTheory n2= new QuadraticTheory(1,2,3);
 		//System.out.println(n2);
