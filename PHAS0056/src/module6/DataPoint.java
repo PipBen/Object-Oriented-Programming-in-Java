@@ -1,10 +1,10 @@
-package module5;
+package module6;
 
 public class DataPoint {
 	//class variables
-	double x;
-	double y;
-	double ey;
+	protected double x;
+	protected double y;
+	protected double ey;
 	
 	//constructor for DataPoint oject
 	public DataPoint(double x_val, double y_val,double ey_val) {
