@@ -32,9 +32,9 @@ public class DataAnalysis {
 			//new GoodnessOfFitCalculator using the ChiSquared method
 			GoodnessOfFitCalculator gofCalculator= new ChiSquared();
 			//arraylist including DataPoint and LabelledDataPoint objects
-			ArrayList<Object> allData = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
+			ArrayList<DataPoint> allData = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
 			//remove estimated and calculated values from data
-			ArrayList<Object> data = new ArrayList<Object>(TestDataPoints.removeLabelled(allData));
+			ArrayList<DataPoint> data = new ArrayList<DataPoint>(TestDataPoints.removeLabelled(allData));
 			
 //			System.out.println(data);
 //			System.out.println(allData);

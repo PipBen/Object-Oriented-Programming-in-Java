@@ -11,14 +11,14 @@ import java.util.Scanner;
 public class TestDataPoints {
 	
 	//reads the values from the given URL and returns them in the form of an ArrayList
-	public static ArrayList<Object> dataFromURL(String url) throws IOException{
+	public static ArrayList<DataPoint> dataFromURL(String url) throws IOException{
 		//convert URL to bufferedreader
 		URL u = new URL(url);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		//new arraylist object for data points
-		ArrayList<Object> mypoints = new ArrayList<Object>();
+		ArrayList<DataPoint> mypoints = new ArrayList<DataPoint>();
 		String line =br.readLine();
 		
 		//while there is another line
@@ -45,8 +45,8 @@ public class TestDataPoints {
 	}
 	
 	//removes LabelledDataPoint objects
-	public static ArrayList<Object> removeLabelled(ArrayList<Object> full){
-		ArrayList<Object> part = new ArrayList<Object>();
+	public static ArrayList<DataPoint> removeLabelled(ArrayList<DataPoint> full){
+		ArrayList<DataPoint> part = new ArrayList<DataPoint>();
 		for (int i=0;i<full.size();i++) {
 			if (full.get(i) instanceof LabelledDataPoint ==false) {
 				//Object point = full.get(i);
@@ -58,7 +58,7 @@ public class TestDataPoints {
 
 	public static void main(String[] args) {
 		try {
-			ArrayList<Object> points = new ArrayList<Object> (dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
+			ArrayList<DataPoint> points = new ArrayList<DataPoint> (dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
 			
 			System.out.println(points);
 		}
