@@ -29,7 +29,8 @@ public class DataAnalysis implements GoodnessOfFitCalculator{
 	
 	public static void main(String[] args) {
 		try{
-			Collection<Object> collec = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
+			GoodnessOfFitCalculator gofCalculator= new ChiSquared();
+			ArrayList<DataPoint> collec = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
 			Theory pow2 = new PowerLawTheory(2);
 			Theory pow205 = new PowerLawTheory(2.05);
 			Theory quad210 = new QuadraticTheory(2,1,0);
@@ -37,6 +38,7 @@ public class DataAnalysis implements GoodnessOfFitCalculator{
 			theories.add(pow2);
 			theories.add(pow205);
 			theories.add(quad210);
+			bestTheory(collec,theories,gofCalculator);
 		}
 		catch(IOException e){
 			System.out.println("Problem: "+e.getMessage());
