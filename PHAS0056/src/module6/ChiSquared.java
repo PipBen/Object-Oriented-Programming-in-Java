@@ -26,7 +26,7 @@ public class ChiSquared implements GoodnessOfFitCalculator{
 		}
 		return chi_sq_sum;
 	}
-	
+	//hello
 	public static void main(String[] args) {
 		try{
 			ArrayList<Object> points = new ArrayList<Object> (TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
