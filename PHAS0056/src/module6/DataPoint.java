@@ -1,12 +1,11 @@
 package module6;
 
 public class DataPoint {
-	//class variables
-	protected double x;
-	protected double y;
-	protected double ey;
 	
-	//constructor for DataPoint oject
+	protected double x;//independent variable
+	protected double y; //dependent variable
+	protected double ey; //error in y
+	
 	public DataPoint(double x_val, double y_val,double ey_val) {
 		this.x=x_val;
 		this.y=y_val;
@@ -27,7 +26,7 @@ public class DataPoint {
 	}
 	//converts DataPoint object into readable string
 	public String toString() {
-		String point= "x="+x+",  y="+y+"+-"+ey;
+		String point= "{x="+x+",  y="+y+"+-"+ey+"}";
 		return point;
 	}
 	

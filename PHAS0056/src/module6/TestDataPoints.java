@@ -6,10 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Scanner;
-
-import module5.DataPoint;
 
 public class TestDataPoints {
 	
@@ -31,8 +28,10 @@ public class TestDataPoints {
 			double x = s.nextDouble();
 			double y =s.nextDouble();
 			double ey = s.nextDouble();
+			//if there is a label, return a LabelledDataPoint, else return DataPoint
 			if (s.hasNext()) {
-				LabelledDataPoint p = new LabelledDataPoint(x,y,ey);
+				String label = s.next();
+				LabelledDataPoint p = new LabelledDataPoint(x,y,ey,label);
 				mypoints.add(p);
 			}
 			else {
@@ -44,14 +43,24 @@ public class TestDataPoints {
 		}
 		return mypoints;
 	}
+	
+	//removes LabelledDataPoint objects
+	public static ArrayList<Object> removeLabelled(ArrayList<Object> full){
+		ArrayList<Object> part = new ArrayList<Object>();
+		for (int i=0;i<full.size();i++) {
+			if (full.get(i) instanceof LabelledDataPoint ==false) {
+				//Object point = full.get(i);
+				part.add(full.get(i));
+			}
+		}
+		return part;
+	}
 
 	public static void main(String[] args) {
 		try {
 			ArrayList<Object> points = new ArrayList<Object> (dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
+			
 			System.out.println(points);
-			DataPoint a= new DataPoint(1,2,3);
-			System.out.println(a);
-		
 		}
 		catch(IOException e){
 			System.out.println("Problem: "+e.getMessage());

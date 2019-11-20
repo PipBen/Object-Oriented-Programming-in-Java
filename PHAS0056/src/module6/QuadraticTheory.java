@@ -1,6 +1,7 @@
 package module6;
 
 public class QuadraticTheory implements Theory{
+	//ax^2+bx+c
 	double a;
 	double b;
 	double c;
@@ -21,11 +22,4 @@ public class QuadraticTheory implements Theory{
 		String quad= "y= "+ a+"x"+"^2 + "+b+"x "+"+ "+c;
 		return quad;
 	}
-	
-	public static void main(String[] args) {
-		QuadraticTheory n1= new QuadraticTheory(1,2,3);
-		System.out.println(n1.y(4));
-	}
-
-
 }

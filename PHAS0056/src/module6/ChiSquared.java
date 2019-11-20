@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ChiSquared implements GoodnessOfFitCalculator{
-	
+	//implement method from GoodnessOfFitCalculator to calculate chi squared
 	public double goodnessOfFit(Collection<DataPoint> data, Theory theory) {
 		int i=0;
 		double chi_sq_sum=0;
@@ -26,16 +26,23 @@ public class ChiSquared implements GoodnessOfFitCalculator{
 		}
 		return chi_sq_sum;
 	}
-	//hello
-	public static void main(String[] args) {
-		try{
-			ArrayList<Object> points = new ArrayList<Object> (TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
-			//Theory n1 = new Theory(PowerLawTheory(1)); 
-			//goodnessOfFit(points,n1);
-		}
-		catch(IOException e) {
-			System.out.println("Problem: "+e.getMessage());
-		}
-	}
+	
+//	public static void main(String[] args) {
+//		try{
+//			GoodnessOfFitCalculator gofCalculator= new ChiSquared();
+//			Theory pow2 = new PowerLawTheory(2);
+//			Theory pow205 = new PowerLawTheory(2.05);
+//			Theory quad210 = new QuadraticTheory(2,1,0);
+//			ArrayList<DataPoint> points = new ArrayList<DataPoint> (TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
+//			System.out.println(gofCalculator.goodnessOfFit(points,pow2));
+//			System.out.println(gofCalculator.goodnessOfFit(points,pow205));
+//			System.out.println(gofCalculator.goodnessOfFit(points,quad210));
+//			//Theory n1 = new Theory(PowerLawTheory(1)); 
+//			//goodnessOfFit(points,n1);
+//		}
+//		catch(IOException e) {
+//			System.out.println("Problem: "+e.getMessage());
+//		}
+//	}
 }
 

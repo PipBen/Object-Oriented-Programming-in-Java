@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class DataAnalysis implements GoodnessOfFitCalculator{
-	//GoodnessOfFitCalculator gofCalculator= new GoodnessOfFitCalculator();
-	
+public class DataAnalysis {
+	//method from notes to determine the theory in best agreement with a set of datapoint objects
 	private static Theory bestTheory(Collection<DataPoint> data,
 	            Collection<Theory> theories, GoodnessOfFitCalculator gofCalculator) {
 		boolean first = true;
@@ -27,10 +26,20 @@ public class DataAnalysis implements GoodnessOfFitCalculator{
 	}
 	
 	
+	
 	public static void main(String[] args) {
 		try{
+			//new GoodnessOfFitCalculator using the ChiSquared method
 			GoodnessOfFitCalculator gofCalculator= new ChiSquared();
-			ArrayList<DataPoint> collec = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
+			//arraylist including DataPoint and LabelledDataPoint objects
+			ArrayList<Object> allData = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
+			//remove estimated and calculated values from data
+			ArrayList<Object> data = new ArrayList<Object>(TestDataPoints.removeLabelled(allData));
+			
+//			System.out.println(data);
+//			System.out.println(allData);
+			//collec.removeAll(ArrayList<LabelledDataPoint> a);
+			//System.out.println(collec);
 			Theory pow2 = new PowerLawTheory(2);
 			Theory pow205 = new PowerLawTheory(2.05);
 			Theory quad210 = new QuadraticTheory(2,1,0);
@@ -38,7 +47,7 @@ public class DataAnalysis implements GoodnessOfFitCalculator{
 			theories.add(pow2);
 			theories.add(pow205);
 			theories.add(quad210);
-			bestTheory(collec,theories,gofCalculator);
+			System.out.println(bestTheory(data,theories,gofCalculator));
 		}
 		catch(IOException e){
 			System.out.println("Problem: "+e.getMessage());
