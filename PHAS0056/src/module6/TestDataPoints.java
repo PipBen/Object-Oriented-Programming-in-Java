@@ -28,7 +28,7 @@ public class TestDataPoints {
 			double x = s.nextDouble();
 			double y =s.nextDouble();
 			double ey = s.nextDouble();
-			//if there is a label, return a LabelledDataPoint, else return DataPoint
+			//if there is a label, add a LabelledDataPoint, else add a DataPoint
 			if (s.hasNext()) {
 				String label = s.next();
 				LabelledDataPoint p = new LabelledDataPoint(x,y,ey,label);
@@ -44,28 +44,15 @@ public class TestDataPoints {
 		return mypoints;
 	}
 	
-	//removes LabelledDataPoint objects
+	//removes LabelledDataPoint objects from an array of DataPoint objects
 	public static ArrayList<DataPoint> removeLabelled(ArrayList<DataPoint> full){
 		ArrayList<DataPoint> part = new ArrayList<DataPoint>();
 		for (int i=0;i<full.size();i++) {
 			if (full.get(i) instanceof LabelledDataPoint ==false) {
-				//Object point = full.get(i);
 				part.add(full.get(i));
 			}
 		}
 		return part;
-	}
-
-	public static void main(String[] args) {
-		try {
-			ArrayList<DataPoint> points = new ArrayList<DataPoint> (dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
-			
-			System.out.println(points);
-		}
-		catch(IOException e){
-			System.out.println("Problem: "+e.getMessage());
-		}
-
 	}
 
 }
