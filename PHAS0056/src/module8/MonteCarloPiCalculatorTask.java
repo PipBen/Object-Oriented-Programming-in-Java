@@ -4,12 +4,12 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 
 public class MonteCarloPiCalculatorTask implements Callable<Double> {
-	private final long n_points;
+	private final long n_points;//number of points for our estimate of pi
 	
 	public MonteCarloPiCalculatorTask(long nPoints) {
 		this.n_points = nPoints;
 	}
-	
+	//copied code from notes, generates random points within a unit square, uses these to find an estimate for pi
 	@Override
 	public Double call() {
 		Random rand = new Random();

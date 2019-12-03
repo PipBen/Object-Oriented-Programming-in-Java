@@ -1,23 +1,22 @@
 package module8;
 
 public class CountdownTask implements Runnable{
-	private int seconds ;
+	private int seconds ;//number of seconds to run the countdown for
 	
 	public CountdownTask(int seconds) {
 		this.seconds=seconds;
 	}
-	
+	//prints to the console a countdown clock from the specified number of seconds
 	public void run() {
-		//set time at start of loop
-		long timeNow = System.currentTimeMillis();
 		//initial time
-		long timeA=timeNow;
-		long timeB=timeNow;
-		int count=0;
+		long startTime = System.currentTimeMillis();
+		//comparison time
+		long compTime=startTime;
+		int count=0;//number of elapsed seconds since the loop started
 		while (count<=seconds) {
 			//reset time for each loop
-			timeB=System.currentTimeMillis();
-			long difference = timeB-timeA;
+			compTime=System.currentTimeMillis();
+			long difference = compTime-startTime;//time elapsed since start of loop
 			if (difference>=count*1000){
 				System.out.println(seconds-count);	
 				count=count+1;
@@ -25,11 +24,5 @@ public class CountdownTask implements Runnable{
 		}
 		return;
 	}			
-	
-	
-	public static void main(String[] args) {
-		CountdownTask five = new CountdownTask(10);
-		Thread countdown = new Thread(five);
-		countdown.start();
-	}
+
 }
