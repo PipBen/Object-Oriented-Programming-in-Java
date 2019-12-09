@@ -35,7 +35,7 @@ public class AnimationPanel extends JPanel implements ActionListener {
 		  int[] xpts = {size,-size,-size,size};
 		  int[] ypts = {size, size,-size,-size};
 		  shape = new Polygon(xpts,ypts,4);
-		  delta = 2*Math.PI*delay/(rotationTime*1000);
+		  delta = 2*Math.PI*delay/(rotationTime*100);
 		  animationTimer = new Timer(delay,this);
 		  animationTimer.start();
 	  }

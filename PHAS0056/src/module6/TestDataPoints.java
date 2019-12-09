@@ -54,5 +54,15 @@ public class TestDataPoints {
 		}
 		return part;
 	}
+	
+	public static void main(String[] args) {
+		try {
+			ArrayList<DataPoint> points = new ArrayList<DataPoint> (dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt"));
 
+			System.out.println(points);
+		}
+		catch(IOException e){
+			System.out.println("Problem: "+e.getMessage());
+		}
+	}
 }
