@@ -1,4 +1,4 @@
-package module9;
+package mod9test;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
