@@ -2,6 +2,7 @@ package module9;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -17,67 +18,127 @@ import javax.swing.Timer;
  * that can be stopped and started.
  */
 public class SolarPanel extends JPanel implements ActionListener {
+	
 	private Ellipse2D sun;
+	private Ellipse2D earth;
+	private Ellipse2D mercury;
+	private Ellipse2D venus;
+	private Ellipse2D mars;
+	private Ellipse2D comet;
+	
 	private final int delay = 50; // delay in ms between steps
 	private final double delta; // angle to rotate in each step
-	private double angle = 0.0; // current angle of shape on screen
+	private double initialAngle= 2*Math.PI;
+	private double earthAngle = 0.0; // current angle of each planet on screen
+	private double mercuryAngle =0.0;
+	private double venusAngle = 0.0;
+	private double marsAngle= 0.0;
+	private double cometAngle= 0.0;
 	private Timer animationTimer; // timer controlling frame rate
+	private int n=0;
 	
-
-	
-	//private Polygon shape; // shape to be displayed
 
 	SolarPanel(int width, int height,double rotationTime){
 		setPreferredSize(new Dimension(width,height));
-		sun = new Ellipse2D.Double(0,0,20,20);
-		//sun = new Polygon2D.Double(xpts,ypts,100);
-		//delta = 2*Math.PI*delay/(rotationTime*1000);
-		delta = 2*Math.PI*delay/(rotationTime*100);
+		//create yellow disk to represent sun in the centre
+		sun = new Ellipse2D.Double(-50,-50,100,100);
+		//set distance of Earth from Sun and diameter of Earth, each other planet has correct distance and diameter 
+		//relative to Earth according to data from NASA
+		double earthDist=300;
+		double earthDiam=30;
+		mercury= new Ellipse2D.Double(0.387*earthDist,0.387*earthDist,0.383*earthDiam,0.383*earthDiam);
+		venus = new Ellipse2D.Double(0.723*earthDist,0.723*earthDist,0.949*earthDiam,0.949*earthDiam);
+		earth = new Ellipse2D.Double(earthDist,earthDist,earthDiam,earthDiam);
+		mars = new Ellipse2D.Double(1.52*earthDist,1.52*earthDist,0.532*earthDiam,0.532*earthDiam);
+		comet = new Ellipse2D.Double(2*earthDist,0.5*earthDist,0.2*earthDiam,0.2*earthDiam);
+	
+		delta = 2*Math.PI*delay/(rotationTime*10);
 		animationTimer = new Timer(delay,this);
 		animationTimer.start();
 	}
 	
 	
-//	/**New position of planet
-//	 * 
-//	 * @param poly
-//	 * @param angle
-//	 * @return
-//	 */
-//	private static Ellipse2D planetOrbit(Ellipse2D poly, double angle) {
-//		   Ellipse2D newPoly = new Ellipse2D.Double(100,100,0,0);
-////		   for (int i = 0; i < poly.npoints; i++) {
-////		   double x = poly.xpoints[i]*Math.cos(angle)+
-////		   poly.ypoints[i]*Math.sin(angle);
-////		   double y = poly.ypoints[i]*Math.cos(angle)-
-////		   poly.xpoints[i]*Math.sin(angle);
-//		   //newPoly.addPoint((int) x, (int) y);
-//		   
-//		   return newPoly;
-//		   }
+	/**New position of planet in orbit
+	 * 
+	 * @param planet
+	 * @param angle
+	 * @return newPlanet
+	 */
+	private static Ellipse2D planetOrbit(Ellipse2D planet, double angle) {
+		//width and height of planet reamins the same
+		double height =planet.getHeight();
+		double width= planet.getWidth();
+		//change coordinates of planet
+		double x = planet.getX()*Math.cos(angle);
+		double y = planet.getY()*Math.sin(angle);
+		Ellipse2D newPlanet = new Ellipse2D.Double(x,y,width,height);	   
+		return newPlanet;
+	}
 	
 	protected void paintComponent(Graphics g) {
-		  Graphics2D g2d= (Graphics2D) g;
-		  super.paintComponent(g);
-		  super.paintComponent(g2d);
-		  int height = getHeight();
-		  int width = getWidth();
-		  // Fill in background
-		  g.setColor(Color.BLACK);
-		  g.fillRect(0, 0, width, height);
-		  // Now move origin to centre of panel
-		  g.translate(width/2, height/2);
-		  // Rotate and draw shape
-		  g2d.setColor(Color.YELLOW);
-		  g2d.fill(sun);
-		  //Polygon rotatedShape = planetOrbit(sun, angle);
-		  //g.fillPolygon(rotatedShape);
+		super.paintComponent(g);
+		int height = getHeight();
+		int width = getWidth();
+		// Fill in background
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, width, height);
+		// Now move origin to centre of panel
+		g.translate(width/2, height/2);
+		// Rotate and draw sun
+		Graphics2D sunG= (Graphics2D) g;
+		sunG.setColor(Color.YELLOW);
+		sunG.fill(sun);
+		
+		//new Graphics2D object for each planet to set colour and orbit speed
+		Graphics2D earthG= (Graphics2D) g;
+		earthG.setColor(Color.BLUE);
+		Ellipse2D earthOrbit = planetOrbit(earth, earthAngle);
+		earthG.fill(earthOrbit);
+		
+	
+		Font f = new Font("Arial",Font.BOLD,50);
+		g.setColor(Color.WHITE);
+		g.setFont(f);
+		
+		if (initialAngle-earthAngle/(n*2*Math.PI)<0) {
+			n=n+1;
+			String years = new String("Earth Years: "+n);
+			g.drawString(years,-width/2,height/3);
+		}
+		
+		  
+		Graphics2D mercuryG = (Graphics2D) g;
+		mercuryG.setColor(Color.WHITE);
+		Ellipse2D mercuryOrbit = planetOrbit(mercury, mercuryAngle);
+		mercuryG.fill(mercuryOrbit);
+		  
+		Graphics2D venusG = (Graphics2D) g;
+		venusG.setColor(Color.ORANGE);
+		Ellipse2D venusOrbit = planetOrbit(venus, venusAngle);
+		mercuryG.fill(venusOrbit);
+		  
+		Graphics2D marsG = (Graphics2D) g;
+		marsG.setColor(Color.RED);
+		Ellipse2D marsOrbit = planetOrbit(mars, marsAngle);
+		marsG.fill(marsOrbit);
+		  
+		Graphics2D cometG = (Graphics2D) g;
+		cometG.setColor(Color.GRAY);
+		Ellipse2D cometOrbit = planetOrbit(comet, cometAngle);
+		marsG.fill(cometOrbit);
 	  }
 	
+	//repaints each planet at its new angle
 	public void actionPerformed(ActionEvent event) {
-		   angle += delta;
-		   repaint();
-		   }
+		
+		mercuryAngle += 1.59*delta;
+		venusAngle += 1.18*delta;
+		earthAngle += delta;
+		marsAngle += 0.808*delta;
+		cometAngle +=3*delta;
+		   
+		repaint();
+	}
 	
 	/** Start the animation */
 	   public void start() {animationTimer.start();}

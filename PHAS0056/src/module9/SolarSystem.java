@@ -15,7 +15,7 @@ public class SolarSystem {
 				 public void run() {
 					JFrame frame = new JFrame("Solar System");
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setSize(250,300);
+					frame.setSize(1000,1050);
 					//frame.setVisible(true);
 					JPanel panel = new SolarGuiPanel();
 					frame.add(panel);
