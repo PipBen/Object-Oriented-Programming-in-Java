@@ -14,8 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
- * JPanel containing a rotating square
- * that can be stopped and started.
+ * JPanel containing a central disc representing the sun
+ * with further discs representing planets orbiting the
+ * sun disc with realistic planet sizes, distances from the sun
+ * and orbital speeds. 
  */
 public class SolarPanel extends JPanel implements ActionListener {
 	
@@ -28,17 +30,23 @@ public class SolarPanel extends JPanel implements ActionListener {
 	
 	private final int delay = 50; // delay in ms between steps
 	private final double delta; // angle to rotate in each step
-	private double initialAngle= 2*Math.PI;
 	private double earthAngle = 0.0; // current angle of each planet on screen
 	private double mercuryAngle =0.0;
 	private double venusAngle = 0.0;
 	private double marsAngle= 0.0;
 	private double cometAngle= 0.0;
 	private Timer animationTimer; // timer controlling frame rate
-	private int n=0;
-	
+	int noYears=0; //number of times earth has orbitted the sun
+	double compareAngle=earthAngle;
+	String years =new String("Earth Years: 0");
 
-	SolarPanel(int width, int height,double rotationTime){
+	/**Panel containing sun and multiple planets in a line
+	 * that will orbit at different speeds relative to the earth
+	 * @param width width of panel
+	 * @param height height of panel
+	 * @param orbitTime time for complete orbit [seconds]
+	 */
+	SolarPanel(int width, int height,double orbitTime){
 		setPreferredSize(new Dimension(width,height));
 		//create yellow disk to represent sun in the centre
 		sun = new Ellipse2D.Double(-50,-50,100,100);
@@ -52,7 +60,7 @@ public class SolarPanel extends JPanel implements ActionListener {
 		mars = new Ellipse2D.Double(1.52*earthDist,1.52*earthDist,0.532*earthDiam,0.532*earthDiam);
 		comet = new Ellipse2D.Double(2*earthDist,0.5*earthDist,0.2*earthDiam,0.2*earthDiam);
 	
-		delta = 2*Math.PI*delay/(rotationTime*10);
+		delta = 2*Math.PI*delay/(orbitTime*1000);
 		animationTimer = new Timer(delay,this);
 		animationTimer.start();
 	}
@@ -74,7 +82,7 @@ public class SolarPanel extends JPanel implements ActionListener {
 		Ellipse2D newPlanet = new Ellipse2D.Double(x,y,width,height);	   
 		return newPlanet;
 	}
-	
+	/**paint each planet at the appropriate angle*/
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		int height = getHeight();
@@ -88,25 +96,25 @@ public class SolarPanel extends JPanel implements ActionListener {
 		Graphics2D sunG= (Graphics2D) g;
 		sunG.setColor(Color.YELLOW);
 		sunG.fill(sun);
-		
 		//new Graphics2D object for each planet to set colour and orbit speed
 		Graphics2D earthG= (Graphics2D) g;
 		earthG.setColor(Color.BLUE);
 		Ellipse2D earthOrbit = planetOrbit(earth, earthAngle);
 		earthG.fill(earthOrbit);
 		
-	
+		//set colour and size of text
 		Font f = new Font("Arial",Font.BOLD,50);
 		g.setColor(Color.WHITE);
 		g.setFont(f);
-		
-		if (initialAngle-earthAngle/(n*2*Math.PI)<0) {
-			n=n+1;
-			String years = new String("Earth Years: "+n);
-			g.drawString(years,-width/2,height/3);
+		//update the string representing the number of Earth years elapsed
+		if ((2*Math.PI-compareAngle)<0) {
+			compareAngle=0;
+			noYears++;
+			years =new String("Earth Years: "+noYears);
+			
 		}
-		
-		  
+		g.drawString(years,-width/2,height/3);
+	 
 		Graphics2D mercuryG = (Graphics2D) g;
 		mercuryG.setColor(Color.WHITE);
 		Ellipse2D mercuryOrbit = planetOrbit(mercury, mercuryAngle);
@@ -128,15 +136,16 @@ public class SolarPanel extends JPanel implements ActionListener {
 		marsG.fill(cometOrbit);
 	  }
 	
-	//repaints each planet at its new angle
+	/**repaints each planet at its new angle*/
 	public void actionPerformed(ActionEvent event) {
 		
 		mercuryAngle += 1.59*delta;
 		venusAngle += 1.18*delta;
 		earthAngle += delta;
+		compareAngle+=delta;
 		marsAngle += 0.808*delta;
 		cometAngle +=3*delta;
-		   
+		  
 		repaint();
 	}
 	
