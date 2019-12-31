@@ -9,20 +9,26 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class ClassificationStore {
+	//arraylists of classifications and expertclassifications
 	ArrayList<Classification> classifications;	
 	ArrayList<ExpertClassification> expertClassifications;
+	
 	public ClassificationStore(String urlName) throws IOException{
-		
+		//unpack from url and create BufferedReader
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		String line=br.readLine();
+		
 		this.classifications =new ArrayList<Classification>();
 		this.expertClassifications = new ArrayList<ExpertClassification>();
+		
 		while (line!= null) {
-			
+			//create new classification object
 			Classification classification = new Classification(line);
+			//if the volunteer id of the classification is zero, classification is and expertclassification, so add to
+			//appropriate array
 			if (classification.getVolID()==0){
 				ExpertClassification expertClassification = new ExpertClassification(line);
 				expertClassifications.add(expertClassification);
@@ -35,6 +41,7 @@ public class ClassificationStore {
 		}
 	}
 	
+	//toString method depends on whether the classifications are expert or not
 	public String toString() {
 		if (classifications.isEmpty()){
 			return expertClassifications.toString();
@@ -44,6 +51,7 @@ public class ClassificationStore {
 		}
 	}
 	
+	//return the number of classifications in the array
 	public int noClassifications() {
 		if (classifications.isEmpty()){
 			return expertClassifications.size();
@@ -86,7 +94,7 @@ public class ClassificationStore {
 		}
 		return noClassifiedImages;
 	}
-	//returns an arraylist of images that have been classified by atleast ten volunteers
+	//returns an arraylist of images that have been classified by at least ten volunteers
 	public ArrayList<Image> getAtLeastTen(ImageLocationStore images){
 		ArrayList<Image> atLeastTen = new ArrayList<Image>();
 		ArrayList<Integer> classifiedIDs= getClassifiedIDs();

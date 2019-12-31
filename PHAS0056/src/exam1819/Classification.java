@@ -7,6 +7,7 @@ public class Classification {
 	int volID;
 	String species;
 	
+	//scan over BufferedReader line to create Classification object
 	public Classification(String line) {
 		Scanner s= new Scanner(line);
 		s.useDelimiter(" ");

@@ -12,10 +12,11 @@ import java.util.Scanner;
 import exam1.MPData;
 
 public class Image { 
-	int imageID;
-	double latitude;
+	int imageID; //image identifier
+	double latitude; 
 	double longitude;
 	
+	//scans over a BufferedReader line to create an Image object
 	public Image(String line) {
 		Scanner s= new Scanner(line);
 		s.useDelimiter(" ");

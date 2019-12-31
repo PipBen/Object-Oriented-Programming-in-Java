@@ -9,38 +9,31 @@ public class CandidateSelector implements ImageSelector {
 	public CandidateSelector(String species){
 		this.species=species;
 	}
-	
+	//creates a subset of images classified as candidates to be the chosen species
 	public ArrayList<Image> select(ImageLocationStore images, ClassificationStore classifications){
 		ArrayList<Image> speciesCandidateList = new ArrayList<Image>();
-		ArrayList<Integer> classifiedIDs= classifications.getClassifiedIDs();
 		for(int n=0;n<images.noImages();n++) {
 			Image image = images.getIndex(n);
 			int id = image.getImageID();
-			if(Collections.frequency(classifiedIDs, id)>=2) {
-			int speciesClassifications=0;
+			double speciesClassifications=0;
 			double totalClassifications=0;	
 				for(int i=0;i<classifications.noClassifications();i++) {
 					Classification classification=classifications.getIndex(i);
 					
 					if (classification.getImageID()==id) {
 						String classSpecies=classification.getSpecies();
+						totalClassifications++;
 						if(species.equals(classSpecies)) {
 							speciesClassifications++;
-							totalClassifications++;
-							if (speciesClassifications>=(totalClassifications/2) & speciesCandidateList.contains(image)==false) {
+						if (speciesClassifications>(int)(totalClassifications/2) & speciesCandidateList.contains(image)==false) {
 								speciesCandidateList.add(image);
 							}
 							//speciesCandidateList.add(image);
 						}
-						else {
-							totalClassifications++;
-						}
-						
 					}
 				}
 				
 			}
-		}
 		return speciesCandidateList;
 	}
 }

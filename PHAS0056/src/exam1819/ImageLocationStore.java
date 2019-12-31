@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ImageLocationStore {
 ArrayList<Image> images;	
+	//unpack image/location data from url and store in an ImageLocationStore array
 	public ImageLocationStore(String urlName) throws IOException{
 		
 		URL u = new URL(urlName);
