@@ -2,7 +2,7 @@ package module6;
 
 public class LabelledDataPoint extends DataPoint{
 
-	String labal;
+	//String label;
 	String data_point_label;
 
 	public LabelledDataPoint(double x, double y ,double ey, String label) {
