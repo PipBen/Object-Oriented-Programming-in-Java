@@ -8,11 +8,22 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class to store flight data
+ * @author pipbe
+ *
+ */
 public class FlightDataStore {
 	ArrayList<Flight> flights;
 	Flight cheapestFlight;
+	
+	/**
+	 * Takes flight data from a url and stores it in an arraylist of flight objects
+	 * @param urlName
+	 * @param airports store of Airport data
+	 * @throws IOException
+	 */
 	public FlightDataStore(String urlName, AirportDataStore airports) throws IOException{
-		//unpack from url and create BufferedReader
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);

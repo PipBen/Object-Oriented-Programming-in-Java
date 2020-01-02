@@ -11,7 +11,7 @@ public class ExamPart2 {
 		//find all flights from LHR to ATH
 		OriginDestinationSelector lhrath = new OriginDestinationSelector("LHR","ATH");
 		ArrayList<Flight> flightsArray =flights.getArrayList();
-		ArrayList<Flight> LHRATH= lhrath.select(flights);
+		ArrayList<Flight> LHRATH= lhrath.select(flightsArray);
 		//System.out.println(LHRATH);
 		
 		//find all flights from LHR to ATH under £200
@@ -27,6 +27,7 @@ public class ExamPart2 {
 		System.out.println(LHRATHDuration);
 		
 		Flight quickestFlight =lhrathDuration.getQuickestFlight(LHRATHCost);
+		System.out.println("Quickest flight between LHR and ATH under £200");
 		System.out.println(quickestFlight);
 	}
 

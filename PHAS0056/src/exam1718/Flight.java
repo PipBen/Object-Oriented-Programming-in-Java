@@ -7,6 +7,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Class representing a flight between two airports
+ * @author pipbe
+ *
+ */
 public class Flight {
 	String flightCode;
 	String originCode;
@@ -19,10 +24,12 @@ public class Flight {
 	String arrivalTime;
 	double cost;
 	double duration;
-	//AirportDataStore airports = new AirportDataStor
 
-	
-	
+	/**
+	 * Constructor for Flight object
+	 * @param line String gathered from BufferedReader of flight data containing all parameters for a flight object
+	 * @param airports store of airport data to convert airport codes into full names
+	 */
 	public Flight(String line, AirportDataStore airports) {
 		Scanner s= new Scanner(line);
 		s.useDelimiter(", ");
@@ -44,10 +51,7 @@ public class Flight {
 				this.destinationAirport=airport;
 			}
 		}
-		this.duration=getDuration();
-//		this.originFullName= codeFullNameHash.get(originCode);
-//		this.destinationFullName= codeFullNameHash.get(destCode);
-		
+		this.duration=getDuration();		
 	}
 	
 	public String getFlightCode() {
@@ -83,7 +87,10 @@ public class Flight {
 
 	
 
-	
+	/**
+	 * get the duration of the flight taking into account different timezones
+	 * @return long duration The length of the flight in minutes
+	 */
 	public long getDuration(){
 		LocalDateTime lt1 = LocalDateTime.parse(depDate+"T"+depTime);
 		String timeZone1 =originAirport.getTimeZone();
@@ -98,12 +105,21 @@ public class Flight {
 	}
 	
 	
-	
+	/**
+	 * return the combined cost of two flights
+	 * @param b a flight
+	 * @return combinedCost in pounds
+	 */
 	public double getCombinedCost(Flight b) {
 		double combinedCost=cost+b.getCost();
 		return combinedCost;
 	}
 	
+	/**
+	 * return the combined duration of two flights
+	 * @param b a flight
+	 * @return combinedDuration in minutes
+	 */
 	public double getCombinedDuration( Flight b) {
 		double combinedDuration= duration+b.getDuration();
 		return combinedDuration;

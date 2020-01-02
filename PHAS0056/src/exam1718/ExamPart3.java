@@ -23,19 +23,22 @@ public class ExamPart3 {
 		System.out.println("Direct flights LHR to CPT under 24 hours"+LHRtoCPTUnder24Array);
 		Flight cheapestDirect= LHRtoCPTUnder24.getCheapestFlight(LHRtoCPTUnder24Array);
 		
+		//find all flights departing from LHR
 		OriginSelector originLHR = new OriginSelector("LHR");
 		ArrayList<Flight> originLHRArray=originLHR.select(flightsArray);
 		
+		//find all flights arriving at CPT
 		DestinationSelector destinationCPT = new DestinationSelector("CPT");
 		ArrayList<Flight> destinationCPTArray = destinationCPT.select(flightsArray);
 		
-		//ArrayList<Flight> stopoverFlightArray= new ArrayList<Flight>();
-		
+		//find cheapest stopover flight between these LHR and CPT
 		CheapestStopover cheapestStopover= new CheapestStopover(originLHRArray,destinationCPTArray) ;
 		System.out.println(cheapestStopover);
 		double stopoverCost= cheapestStopover.getTotalCost();
 		double stopoverDuration= cheapestStopover.getTotalDuration();
 		
+		
+		//if the cost of the cheapest stopover flight is less than the direct flight, print flights
 		if(stopoverCost<cheapestDirect.getCost()) {
 			System.out.println("The Cheapest route from LHR to CPT is"+ cheapestStopover);
 		}
