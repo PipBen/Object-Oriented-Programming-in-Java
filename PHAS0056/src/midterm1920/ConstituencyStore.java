@@ -64,7 +64,7 @@ public class ConstituencyStore {
 			Candidate candidate = candidates.get(n);
 			String candidateONS= candidate.getOns();
 			Constituency constituency= onsConsHash.get(candidateONS);
-			if(candidate.getVotes()<constituency.get);
+			if(candidate.getVotes()<constituency);
 		}
 	}
 	//WRONG

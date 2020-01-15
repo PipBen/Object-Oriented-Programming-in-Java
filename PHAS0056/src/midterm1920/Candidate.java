@@ -144,8 +144,7 @@ public class Candidate {
 	 */
 	@Override
 	public String toString() {
-		return "Candidate [ons=" + ons + ", pano=" + pano + ", consName=" + consName + ", surname=" + surname
-				+ ", firstName=" + firstName + ", party=" + party + ", partyID=" + partyID + ", votes=" + votes + "]";
+		return surname + ", " + firstName + ", party=" + party +", votes: " + votes + "]";
 	}
 		
 	

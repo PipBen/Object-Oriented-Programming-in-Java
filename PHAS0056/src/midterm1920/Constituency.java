@@ -1,6 +1,7 @@
 package midterm1920;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Constituency {
@@ -60,5 +61,8 @@ public class Constituency {
 		return "Constituency [ons=" + ons + ", consName=" + consName + ", region=" + region + ", electorate="
 				+ electorate + "]";
 	}
+	
+	
+	
 
 }
