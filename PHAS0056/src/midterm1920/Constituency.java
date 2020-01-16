@@ -1,6 +1,7 @@
 package midterm1920;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,8 +11,10 @@ public class Constituency {
 	String consName; //constitency name
 	String region;
 	double electorate;
+	double totalVoters;
+	CandidateStore candidateStore=new CandidateStore("http://www.hep.ucl.ac.uk/undergrad/0056/exam-data/results.csv");
 	
-	public Constituency(String line){
+	public Constituency(String line)throws IOException{
 		Scanner s= new Scanner(line);
 		s.useDelimiter(",");
 		this.ons=s.next();
@@ -60,6 +63,20 @@ public class Constituency {
 	public String toString() {
 		return "Constituency [ons=" + ons + ", consName=" + consName + ", region=" + region + ", electorate="
 				+ electorate + "]";
+	}
+	
+	
+	public double getTurnout() {
+		ArrayList<Candidate> candidates= candidateStore.getCandidates();
+		for(int n=0; n<candidates.size();n++) {
+			Candidate candidate= candidates.get(n);
+			String candidateONS=candidate.getOns();
+			if(candidateONS.equals(ons)) {
+			totalVoters=totalVoters+candidate.getVotes();
+			}
+		}
+		double turnout=totalVoters/electorate;
+		return turnout;
 	}
 	
 	

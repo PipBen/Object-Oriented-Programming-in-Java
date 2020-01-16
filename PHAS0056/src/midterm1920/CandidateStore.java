@@ -15,6 +15,10 @@ public class CandidateStore {
 	Candidate winningCandidate;
 	ArrayList<Candidate> winningCandidates;
 	Candidate leastVotesWinner;
+	Candidate secondPlaceCandidate;
+	ArrayList<Candidate> secondPlaceCandidates;
+	Candidate mostVotesSecondPlace;
+	ConstituencyStore constituencyStore= new ConstituencyStore("http://www.hep.ucl.ac.uk/undergrad/0056/exam-data/constituencies.csv");
 	
 	public CandidateStore(String urlName) throws IOException{
 		URL u = new URL(urlName);
@@ -107,12 +111,13 @@ public class CandidateStore {
 			String onsCandidate= candidate.getOns();
 			if(onsCandidate.equals(ons) & candidate.getVotes()>mostVotes) {
 				winningCandidate= candidate;
+				mostVotes=candidate.getVotes();
 			}
 		}
 		return winningCandidate;
 	}
 	
-	public ArrayList<Candidate> getWinningCandidates(ConstituencyStore constituencyStore){
+	public ArrayList<Candidate> getWinningCandidates(){
 		ArrayList<Constituency> constituencies =constituencyStore.getConstituencies();
 		this.winningCandidates= new ArrayList<Candidate>();
 		for(int n=0; n<constituencies.size();n++) {
@@ -122,22 +127,62 @@ public class CandidateStore {
 			winningCandidates.add(winningCandidate);
 		}
 		return winningCandidates;
-		
 	}
 	
-	public Candidate getLeastVotesWinner(ConstituencyStore constituencyStore) {
+	public Candidate getLeastVotesWinner() {
 		double leastVotes=1000000;
-		ArrayList<Candidate> winningCandidates= getWinningCandidates(constituencyStore);
+		winningCandidates= getWinningCandidates();
 		for(int n=0; n<winningCandidates.size();n++) {
 			Candidate candidate= winningCandidates.get(n);
 			double votes=candidate.getVotes();
 			if(votes<leastVotes) {
-				this.leastVotesWinner= candidate;
+				leastVotesWinner= candidate;
 				leastVotes=votes;
 			}
 		}
-		return this.leastVotesWinner;
+		return leastVotesWinner;
 	}
+	
+	public Candidate getSecondPlaceCandidate(String ons) {
+		mostVotesCandidate= getWinningCandidate(ons);
+		double mostVotes=0;
+		for(int n=0; n<candidates.size();n++) {
+			Candidate candidate = candidates.get(n);
+			String onsCandidate= candidate.getOns();
+			if(onsCandidate.equals(ons) & candidate.equals(mostVotesCandidate)==false & candidate.getVotes()>mostVotes) {
+				secondPlaceCandidate= candidate;
+				mostVotes=candidate.getVotes();
+			}
+		}
+		return secondPlaceCandidate;
+	}
+	
+	public ArrayList<Candidate> getSecondPlaceCandidates(){
+		ArrayList<Constituency> constituencies =constituencyStore.getConstituencies();
+		this.secondPlaceCandidates= new ArrayList<Candidate>();
+		for(int n=0; n<constituencies.size();n++) {
+			Constituency constituency =constituencies.get(n);
+			String consONS= constituency.getONS();
+			Candidate secondPlaceCandidate=getSecondPlaceCandidate(consONS);
+			secondPlaceCandidates.add(secondPlaceCandidate);
+		}
+		return secondPlaceCandidates;
+	}
+	
+	public Candidate getMostVotesSecondPlace() {
+		double mostVotes=0;
+		ArrayList<Candidate> secondPlaceCandidates= getSecondPlaceCandidates();
+		for(int n=0; n<secondPlaceCandidates.size();n++) {
+			Candidate candidate = secondPlaceCandidates.get(n);
+			double votes=candidate.getVotes();
+			if(votes>mostVotes) {
+				mostVotesSecondPlace= candidate;
+				mostVotes=candidate.getVotes();
+			}
+		}
+		return mostVotesSecondPlace;
+	}
+	
 	
 	
 

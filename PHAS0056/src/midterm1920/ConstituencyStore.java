@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class ConstituencyStore {
@@ -50,23 +52,16 @@ public class ConstituencyStore {
 		return constituencies.toString();
 	}
 	
-	public HashMap<String,Constituency> getONSConsHash() {
-		return onsConsHash;
-	}
 	
-	
-	
-	//WRONG
-	public double getLostDeposits(CandidateStore candidateStore) {
-		int lostDeposists=0;
-		ArrayList<Candidate> candidates =candidateStore.getCandidates();
-		for(int n=0; n<candidates.size();n++) {
-			Candidate candidate = candidates.get(n);
-			String candidateONS= candidate.getOns();
-			Constituency constituency= onsConsHash.get(candidateONS);
-			if(candidate.getVotes()<constituency);
-		}
-	}
-	//WRONG
+//	Comparator<Constituency> compareByTurnout=new Comparator<Constituency>() {
+//		@Override
+//		public int compare(Constituency a, Constituency b) {
+//			return Double.valueOf(a.getTurnout()).compareTo(Double.valueOf(b.getTurnout()));
+//		}
+//	};
+//	
+//	public void sortByTurnout() {
+//		Collections.sort(constituencies, compareByTurnout);
+//	}
 
 }
