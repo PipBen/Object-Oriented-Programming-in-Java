@@ -12,7 +12,8 @@ public class Constituency {
 	String region;
 	double electorate;
 	double totalVoters;
-	CandidateStore candidateStore=new CandidateStore("http://www.hep.ucl.ac.uk/undergrad/0056/exam-data/results.csv");
+	CandidateStore candidateStore;
+	//CandidateStore candidateStore=new CandidateStore("http://www.hep.ucl.ac.uk/undergrad/0056/exam-data/results.csv");
 	
 	public Constituency(String line)throws IOException{
 		Scanner s= new Scanner(line);
@@ -54,6 +55,11 @@ public class Constituency {
 
 	public void setElectorate(double electorate) {
 		this.electorate = electorate;
+	}
+	
+	public void setCandidateStore(CandidateStore candidateStore) throws IOException{
+		this.candidateStore= candidateStore;
+		
 	}
 	
 	/* (non-Javadoc)

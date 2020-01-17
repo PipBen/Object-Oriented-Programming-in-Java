@@ -15,8 +15,10 @@ public class ConstituencyStore {
 	ArrayList<Constituency> constituencies;
 	double totalElectorate=0;
 	HashMap<String,Constituency> onsConsHash;
+	ArrayList<Candidate> secondPlaceCandidates;
+	Candidate mostVotesSecondPlace;
 	
-	public ConstituencyStore(String constituencyURL) throws IOException{
+	public ConstituencyStore(String constituencyURL, CandidateStore candidateStore) throws IOException{
 		URL u = new URL(constituencyURL);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
@@ -29,6 +31,7 @@ public class ConstituencyStore {
 		
 		while (line!= null) {
 			Constituency constituency = new Constituency(line);
+			constituency.setCandidateStore(candidateStore);
 			constituencies.add(constituency);
 			this.totalElectorate=this.totalElectorate +constituency.getElectorate();
 			this.onsConsHash.put(constituency.getONS(), constituency);
@@ -52,16 +55,43 @@ public class ConstituencyStore {
 		return constituencies.toString();
 	}
 	
+	public ArrayList<Candidate> getSecondPlaceCandidates(CandidateStore candidateStore){
+		
+		ArrayList<Constituency> constituencies =getConstituencies();
+		this.secondPlaceCandidates= new ArrayList<Candidate>();
+		for(int n=0; n<constituencies.size();n++) {
+			Constituency constituency =constituencies.get(n);
+			String consONS= constituency.getONS();
+			Candidate secondPlaceCandidate=candidateStore.getSecondPlaceCandidate(consONS);
+			secondPlaceCandidates.add(secondPlaceCandidate);
+		}
+		return secondPlaceCandidates;
+	}
 	
-//	Comparator<Constituency> compareByTurnout=new Comparator<Constituency>() {
-//		@Override
-//		public int compare(Constituency a, Constituency b) {
-//			return Double.valueOf(a.getTurnout()).compareTo(Double.valueOf(b.getTurnout()));
-//		}
-//	};
-//	
-//	public void sortByTurnout() {
-//		Collections.sort(constituencies, compareByTurnout);
-//	}
+	public Candidate getMostVotesSecondPlace(CandidateStore candidateStore) {
+		double mostVotes=0;
+		ArrayList<Candidate> secondPlaceCandidates= getSecondPlaceCandidates(candidateStore);
+		for(int n=0; n<secondPlaceCandidates.size();n++) {
+			Candidate candidate = secondPlaceCandidates.get(n);
+			double votes=candidate.getVotes();
+			if(votes>mostVotes) {
+				mostVotesSecondPlace= candidate;
+				mostVotes=candidate.getVotes();
+			}
+		}
+		return mostVotesSecondPlace;
+	}
+	
+	
+	Comparator<Constituency> compareByTurnout=new Comparator<Constituency>() {
+		@Override
+		public int compare(Constituency a, Constituency b) {
+			return Double.valueOf(a.getTurnout()).compareTo(Double.valueOf(b.getTurnout()));
+		}
+	};
+	
+	public void sortByTurnout() {
+		Collections.sort(constituencies, compareByTurnout);
+	}
 
 }
