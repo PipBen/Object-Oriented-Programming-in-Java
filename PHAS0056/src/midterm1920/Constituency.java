@@ -3,8 +3,17 @@ package midterm1920;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
+/**Class representing a constituency in 2017 general election
+ * @author zcappbe
+ *
+ */
+/**
+ * @author zcappbe
+ *
+ */
 public class Constituency {
 	
 	String ons; //constituency id
@@ -13,7 +22,8 @@ public class Constituency {
 	double electorate;
 	double totalVoters;
 	CandidateStore candidateStore;
-	//CandidateStore candidateStore=new CandidateStore("http://www.hep.ucl.ac.uk/undergrad/0056/exam-data/results.csv");
+	ArrayList<Candidate> allCandidates;
+	ArrayList<Candidate> candidates;
 	
 	public Constituency(String line)throws IOException{
 		Scanner s= new Scanner(line);
@@ -62,17 +72,47 @@ public class Constituency {
 		
 	}
 	
+	public ArrayList<Candidate> getCandidates(){
+		allCandidates=candidateStore.getCandidates();
+		candidates= new ArrayList<Candidate>();
+		for(int n=0; n<allCandidates.size();n++) {
+			Candidate candidate = allCandidates.get(n);
+			if(candidate.getOns().equals(ons)) {
+				candidates.add(candidate);
+			}
+		}
+		return candidates;
+	}
+	
+	public Candidate getWinner() {
+		candidates=getCandidates();
+		Collections.sort(candidates, new SortByVotes());
+		return candidates.get(candidates.size()-1);
+	}
+	
+	public Candidate getSecond() {
+		candidates=getCandidates();
+		Collections.sort(candidates, new SortByVotes());
+		return candidates.get(candidates.size()-2);
+	}
+	
+	public double getCloseness() {
+		return getWinner().getVotes()-getSecond().getVotes();
+	}
+	
+	
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Constituency [ons=" + ons + ", consName=" + consName + ", region=" + region + ", electorate="
-				+ electorate + "]";
+		return consName; 
 	}
 	
 	
 	public double getTurnout() {
+		totalVoters=0;
 		ArrayList<Candidate> candidates= candidateStore.getCandidates();
 		for(int n=0; n<candidates.size();n++) {
 			Candidate candidate= candidates.get(n);
@@ -81,11 +121,9 @@ public class Constituency {
 			totalVoters=totalVoters+candidate.getVotes();
 			}
 		}
-		double turnout=totalVoters/electorate;
+		double turnout=totalVoters/getElectorate();
 		return turnout;
-	}
+	}	
 	
 	
-	
-
 }

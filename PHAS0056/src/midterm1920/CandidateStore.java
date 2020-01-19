@@ -16,10 +16,13 @@ public class CandidateStore {
 	ArrayList<Candidate> winningCandidates;
 	Candidate leastVotesWinner;
 	Candidate secondPlaceCandidate;
-	
 	Candidate mostVotesSecondPlace;
-	//ConstituencyStore constituencyStore= new ConstituencyStore("http://www.hep.ucl.ac.uk/undergrad/0056/exam-data/constituencies.csv");
+
 	
+	/**Unpacks candidate data from url into lines from which objects can be created
+	 * @param urlName
+	 * @throws IOException
+	 */
 	public CandidateStore(String urlName) throws IOException{
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();
@@ -51,18 +54,31 @@ public class CandidateStore {
 		this.candidates = candidates;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return candidates.toString();
 	}
 	
+	/** number of candidates
+	 * @return
+	 */
 	public int getTotalCandidates(){
 		return candidates.size();
 	}
 	
+	/**overall total voters
+	 * @return
+	 */
 	public double getTotalVoters() {
 		return totalVoters;
 	}
 	
+	/** votes for candidates with a given constituency code
+	 * @param onsCode
+	 * @return
+	 */
 	public double getTotalVotes(String onsCode) {
 		
 		double totalVotes=0;
@@ -74,9 +90,11 @@ public class CandidateStore {
 			}
 		}
 		return totalVotes;
-		
 	}
 	
+	/** Return the number of candidates that lost their deposits
+	 * @return
+	 */
 	public double getLostDeposits() {
 		int lostDeposits=0;
 		for(int n=0;n<candidates.size();n++) {
@@ -91,6 +109,9 @@ public class CandidateStore {
 		return lostDeposits;
 	}
 	
+	/**
+	 * @return Candidate with the most votes
+	 */
 	public Candidate getMostVotesCandidate() {
 		double mostVotes=0;
 		//Candidate mostVotesCandidate;
@@ -104,6 +125,10 @@ public class CandidateStore {
 		return this.mostVotesCandidate;
 	}
 	
+	/**
+	 * @param ons
+	 * @return the winning candidate at a given constituency
+	 */
 	public Candidate getWinningCandidate(String ons){
 		double mostVotes=0;
 		for(int n=0; n<candidates.size();n++) {
@@ -117,6 +142,10 @@ public class CandidateStore {
 		return winningCandidate;
 	}
 	
+	/**
+	 * @param constituencyStore
+	 * @return an arraylist of winning candidates
+	 */
 	public ArrayList<Candidate> getWinningCandidates(ConstituencyStore constituencyStore){
 		ArrayList<Constituency> constituencies =constituencyStore.getConstituencies();
 		this.winningCandidates= new ArrayList<Candidate>();
@@ -129,6 +158,10 @@ public class CandidateStore {
 		return winningCandidates;
 	}
 	
+	/**
+	 * @param constituencyStore
+	 * @return Winning candidate with the least votes
+	 */
 	public Candidate getLeastVotesWinner(ConstituencyStore constituencyStore) {
 		double leastVotes=1000000;
 		winningCandidates= getWinningCandidates(constituencyStore);
@@ -143,6 +176,10 @@ public class CandidateStore {
 		return leastVotesWinner;
 	}
 	
+	/**
+	 * @param ons constituency code
+	 * @return Second place candidate in a given constituency
+	 */
 	public Candidate getSecondPlaceCandidate(String ons) {
 		mostVotesCandidate= getWinningCandidate(ons);
 		double mostVotes=0;

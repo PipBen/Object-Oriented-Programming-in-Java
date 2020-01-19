@@ -2,6 +2,10 @@ package midterm1920;
 
 import java.util.Scanner;
 
+/** Generates data point representing a candidate
+ * @author zcappbe
+ *
+ */
 public class Candidate {
 	
 	String ons;
@@ -13,6 +17,9 @@ public class Candidate {
 	String partyID;
 	double votes;
 	
+	/** Takes a bufferedreader line and unpacks data into candidate object
+	 * @param line
+	 */
 	public Candidate(String line){
 		Scanner s= new Scanner(line);
 		s.useDelimiter(",");
@@ -144,7 +151,7 @@ public class Candidate {
 	 */
 	@Override
 	public String toString() {
-		return surname + ", " + firstName + ", party=" + party +", votes: " + votes + "]";
+		return surname + ", " + firstName + ", party=" + party +", votes: " + votes + "]\n";
 	}
 		
 	
