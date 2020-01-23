@@ -7,20 +7,20 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class SignalStore {
-	
+
 	public ArrayList<Signal> signals;
-	
-	public SignalStore(String urlName) throws Exception{
+
+	public SignalStore(String urlName) throws Exception {
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
-		String line=br.readLine();
-		this.signals= new ArrayList<Signal>();
-		while(line!=null) {
+		String line = br.readLine();
+		this.signals = new ArrayList<Signal>();
+		while (line != null) {
 			Signal signal = new Signal(line);
-			signals.add(signal);		
-			line=br.readLine();
+			signals.add(signal);
+			line = br.readLine();
 		}
 	}
 
@@ -38,19 +38,21 @@ public class SignalStore {
 		this.signals = signals;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "["+signals +"]\n";
+		return "[" + signals + "]\n";
 	}
-	
+
 	/**
 	 * @return total number of pulses
 	 */
 	public double getTotalPulses() {
-		return signals.size();	
+		return signals.size();
 	}
 
 }

@@ -5,22 +5,24 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Signal {
-	
-	String  detectorID;
+
+	String detectorID;
 	ArrayList<Double> voltages;
-	
+
 	public Signal(String line) {
 		Scanner s = new Scanner(line);
 		s.useDelimiter(" ");
-		this.detectorID=s.next();
+		this.detectorID = s.next();
 		voltages = new ArrayList<Double>();
-		while(s.hasNext()) {
+		while (s.hasNext()) {
 			voltages.add(s.nextDouble());
 		}
 		s.close();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -55,25 +57,21 @@ public class Signal {
 	public void setVoltages(ArrayList<Double> voltages) {
 		this.voltages = voltages;
 	}
-	
-	
+
 	/**
 	 * @return the amplitude of the pulse
 	 */
 	public double getAmplitude() {
 		return Collections.max(voltages);
 	}
-	
-	
+
 	/**
 	 * @return the arrival time in ns
 	 */
 	public double getArrivalTime() {
-		double amplitude= getAmplitude();
-		int index=voltages.indexOf(amplitude);
+		double amplitude = getAmplitude();
+		int index = voltages.indexOf(amplitude);
 		return index;
 	}
-	
-	
 
 }
