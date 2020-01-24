@@ -9,8 +9,11 @@ import java.util.ArrayList;
 
 public class PlayerStore {
 	
-	ArrayList<Player> players;
-	double totalPlayers;
+	ArrayList<Player> players; //arraylist of Player objects
+	double totalPlayers; //total number of players
+	Player mostRuydsPlayer; //player with most rush yards
+	Player mostAPYdsPlayer; //player with most all purpose yards
+
 	
 	/**Unpacks player data from url into lines from which objects can be created
 	 * @param urlName
@@ -28,7 +31,9 @@ public class PlayerStore {
 		this.players= new ArrayList<Player>();
 		while (line!= null) {
 			Player player= new Player(line);
+
 			players.add(player);
+			line=br.readLine();
 		}
 		totalPlayers=players.size();
 	}
@@ -47,21 +52,48 @@ public class PlayerStore {
 	 * @return the totalPlayers
 	 */
 	public double getTotalPlayers() {
-		return totalPlayers;
+		return players.size();
+	}
+	
+
+	
+	
+	/**Get player with most rush yards
+	 * @return
+	 */
+	public Player getMostRuydsPlayer() {
+		double mostRuyds=0;
+		for(int n=0; n<players.size();n++) {
+			Player player = players.get(n);
+			double ruyds=player.getRuyds();
+			if(ruyds>mostRuyds) {
+				mostRuydsPlayer=player;
+				mostRuyds=player.getRuyds();
+			}
+		}
+		return mostRuydsPlayer;
+	}
+	
+	
+	/** Get the player with most all purpose yards
+	 * @return
+	 */
+	public Player getMostAPYdsPlayer() {
+		double mostAPYds=0;
+		for(int n=0; n<players.size();n++) {
+			Player player = players.get(n);
+			double ruyds=player.getAPYds();
+			if(ruyds>mostAPYds) {
+				mostAPYdsPlayer=player;
+				mostAPYds=player.getRuyds();
+			}
+		}
+		return mostAPYdsPlayer;
 	}
 
-	/**
-	 * @param players the players to set
-	 */
-	public void setPlayers(ArrayList<Player> players) {
-		this.players = players;
-	}
 
-	/**
-	 * @param totalPlayers the totalPlayers to set
-	 */
-	public void setTotalPlayers(double totalPlayers) {
-		this.totalPlayers = totalPlayers;
-	}
+	
+	
+	
 
 }

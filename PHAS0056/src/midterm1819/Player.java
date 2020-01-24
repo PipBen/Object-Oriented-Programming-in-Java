@@ -32,6 +32,7 @@ public class Player {
 		this.reyds=s.nextDouble();
 		this.retd=s.nextDouble();
 		this.fmb=s.nextDouble();
+		s.close();
 	}
 
 
@@ -130,100 +131,8 @@ public class Player {
 		return fmb;
 	}
 
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	/**
-	 * @param team the team to set
-	 */
-	public void setTeam(String team) {
-		this.team = team;
-	}
-
-
-	/**
-	 * @param pos the pos to set
-	 */
-	public void setPos(String pos) {
-		this.pos = pos;
-	}
-
-
-	/**
-	 * @param games the games to set
-	 */
-	public void setGames(double games) {
-		this.games = games;
-	}
-
-
-	/**
-	 * @param att the att to set
-	 */
-	public void setAtt(double att) {
-		this.att = att;
-	}
-
-
-	/**
-	 * @param ruyds the ruyds to set
-	 */
-	public void setRuyds(double ruyds) {
-		this.ruyds = ruyds;
-	}
-
-
-	/**
-	 * @param rutd the rutd to set
-	 */
-	public void setRutd(double rutd) {
-		this.rutd = rutd;
-	}
-
-
-	/**
-	 * @param tgt the tgt to set
-	 */
-	public void setTgt(double tgt) {
-		this.tgt = tgt;
-	}
-
-
-	/**
-	 * @param rec the rec to set
-	 */
-	public void setRec(double rec) {
-		this.rec = rec;
-	}
-
-
-	/**
-	 * @param reyds the reyds to set
-	 */
-	public void setReyds(double reyds) {
-		this.reyds = reyds;
-	}
-
-
-	/**
-	 * @param retd the retd to set
-	 */
-	public void setRetd(double retd) {
-		this.retd = retd;
-	}
-
-
-	/**
-	 * @param fmb the fmb to set
-	 */
-	public void setFmb(double fmb) {
-		this.fmb = fmb;
+	public double getAPYds() {
+		return ruyds+reyds;
 	}
 
 
