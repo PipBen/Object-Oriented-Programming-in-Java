@@ -98,6 +98,9 @@ public class MonthStore {
 		return areaLowMonth;
 	}
 	
+	/**
+	 * 
+	 */
 	public void scanMonthAreaLows(){
 		for(int n=1; n<13; n++) {
 			Month lowestArea= getMonthlyAreaLow(n);
@@ -105,5 +108,7 @@ public class MonthStore {
 			System.out.println(monthName+ lowestArea);
 		}
 	}
+	
+	
 
 }
