@@ -20,11 +20,18 @@ public class ExamPart1 {
 		Collections.sort(tmaxReadings, new SortByDate());
 		System.out.println("Earliest TMAX Reading:" +tmaxReadings.get(0));
 		System.out.println("Latest TMAX Reading:" +tmaxReadings.get(tmaxReadings.size()-1));
-		Collections.sort(tmaxReadings, new SortByMaxValue());
-		System.out.println("Highest TMAX Value: "+tmaxReadings.get(tmaxReadings.size()-1));
-		System.out.println("Lowest TMAX Value: "+tmaxReadings.get(0));
-		System.out.println("Highest TMIN Value: "+tminReadings.get(tminReadings.size()-1));
-		System.out.println("Lowest TMIN Value: "+tminReadings.get(0));
+
+		
+//below is intended to sort the TMAX readings by their maximum value and print out the data required.
+// not sure if it's not working or just taking a very long time
+		
+//		Collections.sort(tmaxReadings, new SortByMaxValue());
+//		
+//		
+//		System.out.println("Highest TMAX Value: "+tmaxReadings.get(tmaxReadings.size()-1));
+//		System.out.println("Lowest TMAX Value: "+tmaxReadings.get(0));
+//		System.out.println("Highest TMIN Value: "+tminReadings.get(tminReadings.size()-1));
+//		System.out.println("Lowest TMIN Value: "+tminReadings.get(0));
 		
 	}
 

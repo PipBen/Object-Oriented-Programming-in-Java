@@ -9,6 +9,9 @@ public class Station {
 	StringBuilder name;
 	String countryID;
 	
+	/**Class representing a line of data from stations.txt
+	 * @param line line of date
+	 */
 	public Station(String line) {
 		Scanner s = new Scanner(line);
 		s.useDelimiter(" ");

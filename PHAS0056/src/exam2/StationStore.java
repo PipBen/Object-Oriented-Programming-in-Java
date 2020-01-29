@@ -8,11 +8,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**Takes data from stations.txt and unpacks into Station objects
+ * @author zcappbe
+ *
+ */
 public class StationStore {
 	
 	ArrayList<Station> stations;
 	HashMap<String,StringBuilder> idNameMap= new HashMap<String,StringBuilder>();
 	
+	/**Unpacks into Station objects
+	 * @param urlName
+	 * @throws IOException
+	 */
 	public StationStore(String urlName) throws IOException {
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();

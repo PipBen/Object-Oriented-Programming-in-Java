@@ -11,8 +11,12 @@ import java.util.HashMap;
 public class CountryStore {
 	
 	ArrayList<Country> countries;
-	HashMap<String,StringBuilder> idCountryMap= new HashMap<String,StringBuilder>();
+	HashMap<String,StringBuilder> idCountryMap= new HashMap<String,StringBuilder>(); 
 	
+	/** storage class holding Country objects
+	 * @param urlName
+	 * @throws IOException
+	 */
 	public CountryStore(String urlName) throws IOException{
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();

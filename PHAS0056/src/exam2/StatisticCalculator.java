@@ -1,8 +1,8 @@
 package exam2;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 public interface StatisticCalculator {
 	
-	public double calculate(Collection collection);
+	public double calculate(ArrayList<Double> measurements);
 }

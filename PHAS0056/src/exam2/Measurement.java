@@ -10,5 +10,7 @@ package exam2;
 public interface Measurement {
 	
 	public String name();
+	
+	
 
 }

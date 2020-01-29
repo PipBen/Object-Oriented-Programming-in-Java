@@ -7,6 +7,9 @@ public class Country {
 	String countryID;
 	StringBuilder name;
 	
+	/** Class representing a country data point
+	 * @param line line of data
+	 */
 	public Country(String line) {
 		Scanner s = new Scanner(line);
 		s.useDelimiter(" ");

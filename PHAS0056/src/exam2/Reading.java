@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**Class representing a line of data from readings.txt
+ * @author zcappbe
+ *
+ */
 public class Reading {
 	
 	String id;
@@ -32,8 +36,14 @@ public class Reading {
 		this.type=s.next();
 		this.date=new Date(year-month-01);
 		readings= new ArrayList<Double>();
-		while (s.hasNext()) {
-			readings.add(s.nextDouble());
+		if(s.nextInt()==-9999) {
+			this.readings=null;
+			s.close();
+		}
+		else {
+			while (s.hasNext()) {
+				readings.add(s.nextDouble());
+			}
 		}
 		//System.out.println("hello");
 		s.close();
