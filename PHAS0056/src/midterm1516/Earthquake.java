@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Earthquake {
 	
+	//variable names as given
 	int year;
 	int month;
 	int day;
@@ -20,6 +21,9 @@ public class Earthquake {
 	double magnitude;
 	double id;
 	
+	/**Takes a line from data file and assigns variables to each earthquake
+	 * @param line a single line of data
+	 */
 	public Earthquake(String line) {
 		Scanner s = new Scanner(line);
 		this.year=s.nextInt();
@@ -268,11 +272,10 @@ public class Earthquake {
 	 */
 	@Override
 	public String toString() {
-		return "Earthquake [year=" + year + ", month=" + month + ", day=" + day + ", hour=" + hour + ", minute="
-				+ minute + ", second=" + second + ", latitude=" + latitude + ", longitude=" + longitude + ", dep=" + dep
-				+ ", ez=" + ez + ", magnitude=" + magnitude + ", id=" + id + "]";
+		return  "[Date: "+day +"/"+month+"/98"+ " Time: "  + hour + ":"
+				+ minute + ":" + second + ", Latitude: " + latitude + ", Longitude=" + longitude + ", Depth=" + dep
+				+ "+-" + ez + "km, Magnitude=" + magnitude + ", ID=" + id + "]";
 	}
-	
 	
 	
 
